@@ -1,0 +1,43 @@
+{
+  "schema_version": "joint_curved_page_probe_config_v1",
+  "synthetic_only": true,
+  "device": "cpu",
+  "threads": 1,
+  "dtype": "float64",
+  "seed": 29,
+  "image_size_wh": [64, 48],
+  "num_queries": 3,
+  "control_points": 4,
+  "channels": 8,
+  "alphabet_size": 4,
+  "band_rows": 3,
+  "baseline_fraction": 0.75,
+  "spacing_px": 1.25,
+  "max_samples": 48,
+  "penalty_scale_px": 5.0,
+  "min_increment_px": 0.125,
+  "min_segment_length_px": 0.0001,
+  "exclusion_charge_rule": "max_samples_times_log_alphabet_size",
+  "gradient_minimum_norm": 1e-9,
+  "predicted_baselines_xy": [
+    [[10.0, 9.0], [19.0, 8.6], [29.0, 9.5], [38.0, 9.0]],
+    [[10.0, 23.0], [19.0, 22.6], [29.0, 23.5], [38.0, 23.0]],
+    [[10.0, 37.0], [19.0, 36.6], [29.0, 37.5], [38.0, 37.0]]
+  ],
+  "predicted_heights_px": [5.0, 5.0, 5.0],
+  "target_baselines_xy": [
+    [[10.0, 9.0], [38.0, 9.0]],
+    [[10.0, 23.0], [24.0, 23.3], [38.0, 23.0]],
+    [[10.0, 37.0], [15.0, 37.2], [24.0, 36.8], [32.0, 37.1], [38.0, 37.0]]
+  ],
+  "target_heights_px": [5.0, 5.0, 5.0],
+  "target_token_ids": [[1, 2], [2, 2], [1, 1]],
+  "target_order": [[-1, 1, 1], [0, -1, 1], [0, 0, -1]],
+  "fault_query": 1,
+  "collapse_point_xy": [24.0, 23.0],
+  "near_collapse_dx_px": 0.000001,
+  "repair_step_learning_rate": 0.2,
+  "oob_baseline_y": 1.0,
+  "cap_baseline_xy": [[2.0, 23.0], [20.0, 23.0], [43.0, 23.0], [61.0, 23.0]],
+  "infeasible_baseline_xy": [[23.5, 23.0], [23.55, 23.0], [23.65, 23.0], [23.7, 23.0]]
+}

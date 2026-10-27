@@ -1,0 +1,156 @@
+{
+  "schema_version": "ld2_config_v1",
+  "lot": "docs/END_TO_END_LD2_LOT.txt (amendements §4 à §7, le dernier l'emporte) ; conception docs/END_TO_END_LINE_DETR_DESIGN.txt §4, §10, §11",
+  "status": "PRÉDÉCLARÉ avant toute lecture des pages d'évaluation (exécutant sonnet pour p6, 25/10/2026). Entraînement complet géométrie + CTC (λ = 1/6) puis évaluation UNIQUE.",
+  "seed": 20261023,
+  "seed_note": "graine de LD-1 reprise pour le principal et le témoin (§4 (3) : « même graine ») ; le lot LD-2 ne donne pas d'autre graine d'entraînement",
+  "lambda": {
+    "value": "1/6",
+    "float": 0.16666666666666666,
+    "source": "lot §1, E2E-5 (GradScale vers enc_det, géométrie détachée pour la CTC, comme B3)"
+  },
+  "model": {
+    "n_queries_main": 32,
+    "n_queries_witness": 512,
+    "k_points": 8
+  },
+  "init": {
+    "encoder": {
+      "source": "E2E-5 lambda, bras B3, enc_det (kernel_source mabaku/babaorum-e2e5-lambda, relpath logs/checkpoint_last.pt), comme dans LD-1",
+      "sha256_full": "ef5e826803c347f73e49c83c0f21f61399f9ea06ee985905bd17644dff3844fa",
+      "step": 2000
+    },
+    "decoder": {
+      "source": "LD-1 sortie finale (kernel_source mabaku/babaorum-ld1-run, relpath ld1/ld1_step001871.pt) ; tout sauf enc_det ; témoin : décodeur NEUF",
+      "file": "ld1_step001871.pt",
+      "sha256_full": "a1c5fbab288c99e4911789f926d2d568815fd2a165310da5020ac7c140f8197b",
+      "step": 1871
+    },
+    "reader": "Reader (reader.*) du checkpoint E2E-5 v2 pas 2000, même fichier et même sha que l'encodeur ; refus si une clé ou une forme manque ou diffère ; même init pour le témoin (décision p6 25/10, gel 2)"
+  },
+  "inherit_ld1": {
+    "path": "config/ld1_line_detr.json",
+    "sha256": "8c05f43ac876fb6b266058c527308e77009a793f2fddb6dbf271d69a7bd05094",
+    "keys": [
+      "lr",
+      "lr_encoder",
+      "weight_decay",
+      "canvas",
+      "batch_candidates",
+      "checkpoint_every",
+      "detector",
+      "pages"
+    ],
+    "note": "optimiseur, canevas, tailles de lot candidates, détecteur PP et listes de pages repris tels quels de LD-1 (modèle de LD-1, gelé)"
+  },
+  "stage_s": {
+    "config": "config/stage_s_smoke_v2.json",
+    "sha256_prefix": "a464e1b6",
+    "reads": "tiles.size_px (768), tiles.line_centered_windows (true), ctc_lines_per_step_max (8), model.channels (64), model.hidden (128 par défaut), scale.target_median_height_px (32) ; configuration d'E2E-5 (config v2)",
+    "tile_overlap_px": 384,
+    "tile_overlap_note": "la config d'E2E-5 ne définit aucun recouvrement (fenêtres d'entraînement, page entière à l'évaluation) : 384 px (demi-tuile) est un choix de ce code pour le témoin, signalé dans le rapport"
+  },
+  "steps": {
+    "timing_steps": 200,
+    "max_steps": 20000,
+    "main_budget_s": 8400,
+    "witness_budget_s": 4200,
+    "formulas": "S2 = min(20 000, floor(8 400 / s_par_pas_principal)) ; S_t = min(S2, floor(4 200 / s_par_pas_témoin)) ; écrits dans le manifeste AVANT tout entraînement"
+  },
+  "freeze": {
+    "threshold": 0.6,
+    "threshold_rule": "§7 (2) : meilleur F1 en Z-GT sur mf_0045-0049 (F1 0,96233 à 0,6 contre 0,96227 à 0,5), LD-1 §10 (2)",
+    "nms": {
+      "function": "babaorum.experimental.line_detr.nms_lines",
+      "order": "score décroissant, égalité par (id de zone, indice de requête)",
+      "overlap_fraction_of_min_length": 0.5,
+      "max_median_distance_in_h": 0.5,
+      "design": "conception §10 (9)"
+    },
+    "checkpoint_rule": "le DERNIER (pas S2), sans sélection",
+    "frozen_files_sha256_prefix": {
+      "src/babaorum/experimental/line_detr.py": "7715a8e3",
+      "scripts/train_line_detr.py": "3552c072"
+    },
+    "also_record_sha256": [
+      "scripts/train_ld2.py",
+      "scripts/ld2_core.py",
+      "config/ld2.json"
+    ]
+  },
+  "criterion": {
+    "a": {
+      "precision_min": 0.8,
+      "recall_min": 0.9,
+      "pages": 10,
+      "zones": "Z-PP-blocs",
+      "mean": "non pondérée, n_pred = 0 donne P = R = 0, dénominateur 10"
+    },
+    "b": {
+      "dp_low_gt": 0.0,
+      "dr_low_min": -0.02
+    }
+  },
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 20261018,
+    "percentiles": [
+      2.5,
+      97.5
+    ]
+  },
+  "reference": {
+    "file": "e2e5_lambda_run_report.json",
+    "sha256_prefix": "3abfe0d7",
+    "values": "metrics.after de chaque page d'évaluation (rappel, précision ; précision 0 si n_pred = 0), sans nouveau calcul",
+    "source": "kernel_source mabaku/babaorum-e2e5-lambda, à la racine de la sortie"
+  },
+  "witness": {
+    "protocol": "§5 (2) : mêmes données, encodeur E2E-5 pas 2000, décodeur NEUF, N = 512, tuiles comme l'étape S, mêmes pertes et même CTC avec λ, même seuil, même NMS, même graine ; budget propre S_t, plafond 4 800 s ; échec rapporté tel quel, sans relance",
+    "descriptive": true,
+    "limit": "témoin : recouvrement de tuile 384 px choisi par p6 (absent de la config d'E2E-5) ; lignes de plus de ~700 px souvent coupées, témoin pessimiste"
+  },
+  "eval": {
+    "cal_page": "mf_0045",
+    "cal_pages_estimate": 10,
+    "note": "étalonnage sur UNE page d'entraînement (jamais une page d'évaluation) ; estimation = chargements + 10 x durée d'une page",
+    "estimate_factor": 1.5
+  },
+  "robustness": {
+    "timeouts_s": {
+      "D": 900,
+      "T": 2700,
+      "E": 9000,
+      "EW": 4800,
+      "FREEZE": 300,
+      "CAL": 900,
+      "pytest_heavy": 5400,
+      "TW": 1500
+    },
+    "ew_grace_s": 180,
+    "heartbeat_s": 60,
+    "deadline_s": 19800,
+    "tail_reserve_s": 2400,
+    "stop_margin_s": 120,
+    "eval_margin_s": 300,
+    "checkpoints_kept": 3,
+    "log_every_steps": 100,
+    "exit_record": "ld2_run_exit.json",
+    "requires_cuda_for_full_run": true,
+    "eval_cap": "restant - eval_margin_s, APRÈS la porte d'estimation (étalonnage sur une page d'entraînement) ; pas de plafond fixe"
+  },
+  "decisions": {
+    "Q1": "p6 25/10 : Reader initialisé depuis E2E-5 v2 pas 2000 (reader.*), témoin idem ; provenance des clés écrite au manifeste (init.key_sources)",
+    "Q2": "p6 25/10 : toutes les clés de LineDetr sauf enc_det viennent de LD-1 ; enc_det d'E2E-5 ; témoin neuf sauf enc_det",
+    "Q3": "p6 25/10 : graine 20261023 pour le principal et le témoin",
+    "Q4": "p6 25/10 : tuile 768, recouvrement 384 px, témoin pessimiste",
+    "Q5": "p6 25/10 : au plus 8 lignes CTC par pas, sigma recuit de 1 h à 0,1 h, poids 1, géométrie prédite détachée",
+    "Q7": "p6 25/10 : reprise interdite (T exige RUN vide ; E et EW refusent un checkpoint existant)",
+    "Q8": "p6 25/10 : référence à la racine de la sortie du noyau mabaku/babaorum-e2e5-lambda ; contrôlé par la fumée Kaggle",
+    "Q9": "p6 25/10 : slugs mabaku/babaorum-ld2-kit, -ld2-run, -ld2-smoke",
+    "Q10": "p6 25/10 : internet réglé par carnet, HF_HUB_OFFLINE=1 hors D",
+    "Q12": "p6 25/10 : un lancement INCOMPLETE n'écrit pas de rapport ; ld2_run_exit.json dit l'état",
+    "gel3": "p6 25/10 : lot §8 (amendement 5) points (1)-(7)",
+    "gel6": "p6 25/10 : lot §9, plafond global 5 h 30 (19 800 s) pour rendre au témoin son budget prévu"
+  }
+}

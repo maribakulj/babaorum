@@ -1,0 +1,294 @@
+{
+  "schema_version": "ld4_config_v1",
+  "lot": "docs/END_TO_END_LD4_PROPOSITION.txt (sha e04b67bb9d96539e…) ; prédiction et réserves recopiées du document, jamais calculées",
+  "status": "PRÉDÉCLARÉ avant toute génération de page et tout calcul (exécutant sonnet pour p6, 26/10/2026). Inférence seule, sans entraînement.",
+  "threshold": 0.6,
+  "margin_h": 0.5,
+  "fusion": {
+    "rule": "FUSION = lignes DETR gardées + chaque ligne B3 qu'AUCUNE ligne DETR gardée ne recouvre ; recouvrement = line_detr._overlap_rule(b, k, h_b, h_k), b candidate B3, k gardée DETR ; aucun autre filtre, pas de NMS entre lignes B3",
+    "b3_height": "neg + pos du raffinement (refine_lines)",
+    "zones": "Z-PP-blocs"
+  },
+  "ld2": {
+    "checkpoint_file": "ld2_main_step003271.pt",
+    "checkpoint_sha256": "e5afd1432e10aa8e06191678844ae350348f7586f505d1a766aba3a5a44b42c3",
+    "steps": 3271,
+    "manifest": "ld2_manifest.json",
+    "report": "ld2_report.json",
+    "n_queries": 32,
+    "note": "checkpoint, seuil et alphabet viennent du manifeste de la sortie de LD-2 ; le bloc freeze doit coïncider avec ces valeurs et avec ld2_report.json"
+  },
+  "e2e5": {
+    "checkpoint_sha256": "ef5e826803c347f73e49c83c0f21f61399f9ea06ee985905bd17644dff3844fa",
+    "step": 2000,
+    "arm": "B3",
+    "lambda": "1/6",
+    "alphabet_size": 74,
+    "identity": "B3 + λ de la référence = train_stage_s_v2.evaluate_full_page(model, page, cfg, device), appelée telle quelle comme par train_stage_s_v2.evaluate_all dans run_v2 d'E2E-5 : mêmes fichiers (sha ci-dessous = provenance de e2e5_lambda_run_report.json), même config, même checkpoint",
+    "code_pins": {
+      "scripts/train_stage_s_v2.py": "8c8d52e1022af063bbd0a6c2fc77db1e7c2ddf7731c67f1362c4befd2c209518",
+      "scripts/train_stage_s.py": "901156e6daa34593d3172af1ab85242e95f67d1c52e096c2be359c6849dadf88",
+      "config/stage_s_smoke_v2.json": "a464e1b69ede638598b5fd3b03e35740c611a8fe523d7916264a03a1cc0614fc",
+      "src/babaorum/experimental/stage_s_data.py": "d61e9a8da772fa647197257b78659de9ec360c9b6b975bf73546a668f513c6d6",
+      "src/babaorum/experimental/stage_s_targets.py": "a601d43c5c162e1ba6e7fefba6be2b058bc1e50c5453690f77d3aa1fa587042b",
+      "src/babaorum/experimental/stage_s_model.py": "bf3a451c01f819d6d0b8815cb40b10ca60aa09a83dc1416a1231c7ab7a6a6d7f",
+      "src/babaorum/experimental/stage_s_reader.py": "3d311cc130e22594db91d50c763c9dd68e5a0bec3c287180dcb0227b0e9958eb",
+      "src/babaorum/experimental/stage_s_arms.py": "478798b0e9c8156163f3f3575331e8f361d660bc5bc3c6090ca85ef56a6b1e78"
+    },
+    "train_pages": [
+      "mf_0000",
+      "mf_0001",
+      "mf_0002",
+      "mf_0003",
+      "mf_0004",
+      "mf_0005",
+      "mf_0006",
+      "mf_0007",
+      "mf_0008",
+      "mf_0009",
+      "mf_0010",
+      "mf_0011",
+      "mf_0012",
+      "mf_0013",
+      "mf_0014",
+      "mf_0015",
+      "mf_0016",
+      "mf_0017",
+      "mf_0018",
+      "mf_0019",
+      "mf_0020",
+      "mf_0021",
+      "mf_0022",
+      "mf_0023",
+      "mf_0024",
+      "mf_0025",
+      "mf_0026",
+      "mf_0027",
+      "mf_0028",
+      "mf_0029",
+      "mf_0030",
+      "mf_0031",
+      "mf_0032",
+      "mf_0033",
+      "mf_0034",
+      "mf_0035",
+      "mf_0036",
+      "mf_0037",
+      "mf_0038",
+      "mf_0039",
+      "mf_0040",
+      "mf_0041",
+      "mf_0042",
+      "mf_0043",
+      "mf_0044",
+      "mf_0045",
+      "mf_0046",
+      "mf_0047",
+      "mf_0048",
+      "mf_0049"
+    ]
+  },
+  "frozen_files_sha256": {
+    "src/babaorum/experimental/line_detr.py": "7715a8e3dca355b94b9794b71221728e8cc2cf259eed6b9dda0c91380c9bd0b5",
+    "scripts/train_line_detr.py": "3552c07263acaa8508a322275b19f7dc306ef028b31d09df56a0c1f2dc3150e3",
+    "scripts/train_ld2.py": "bb301d04445624c0e2ba759f4c9a882fe6315c47e2e1b3a6e13ab5e6380d08a7",
+    "scripts/ld2_core.py": "8c9b0753ba99ac0e441ef86a20bb04bac1120eda6ea141a0f680354108fb4f49",
+    "config/ld2.json": "6907f17b6c74e2e7179d03cef75ad2b43f990161e3f2cf7284435c35d7f85896",
+    "scripts/ld1b_border_diag.py": "edb6ee018a6d90ce8cec75f65ad6b42b14f3007e1e41f4edeba086f091cea2f5",
+    "scripts/data2_generate.py": "df4a6d1b0f2c94e2df4945b697aaad50449ab5609c47e0472198a2f2433850fa",
+    "scripts/data2_common.py": "55b18e307c0808c7110e706ebe123ea99158baf1ca2745c6c9c6a25367ae1fd4",
+    "config/data2_pages.json": "22fcaba9d6aa42ecef63b8292d9fd3ca3d94486437c0821be7342a328478f004",
+    "config/ld1_line_detr.json": "8c05f43ac876fb6b266058c527308e77009a793f2fddb6dbf271d69a7bd05094",
+    "scripts/ld0_zone_coverage.py": "4fae48f8616a6177819bfb2a6a636d140117681c536407216d92076a4da05913",
+    "src/babaorum/line_geometry.py": "b2a36dd9ec36d3edb083d0c47d9d9e9a05f8963610ecac8c962345fb8284c948",
+    "src/babaorum/experimental/joint_geometry.py": "3aaaa334012af3b4bec8397b33cf8aa3fe029e0d4b6638188d2b41d82b27911d",
+    "src/babaorum/experimental/joint_reader_bridge.py": "62fa63dc136a1ad1de86589663ecfc5edfe52b267a8d666dd5ba4ba493dacb48",
+    "src/babaorum/experimental/joint_curves.py": "b12a91f67356e9946eeb1e9aca2b651f306a33d4fbbda4f92cf4a834ea070997",
+    "scripts/eval_ld3.py": "1cb5ab7785ec9f07b13550f7b15147250af96d5d26619d5a3a19d36ca04e69ca",
+    "scripts/data3_generate.py": "2f1cba982f1f731017dda63102ac361b1f9e56f4c255fa59974c178695f0bec8",
+    "config/ld3.json": "2f1979b06237bb0b1673b43e39d802dfb1d7b9936264b8a85e6d68b0ba59f6ea",
+    "scripts/diag_ld_o1.py": "13b0600fab030bd2f6a2e2aa23d7fb4982ebf2fade82b3c66889fc58d08ee219",
+    "config/ld_o1.json": "edc5d0d4f14eb530f6a99922139809dd5d913e2de458c1e353dcbb2462eefe51"
+  },
+  "pages": {
+    "seed": 20261028,
+    "n": 10,
+    "real_first": 70,
+    "decoy_prefix": "decoy_",
+    "decoy_seed": 1,
+    "decoy_n": 1,
+    "forbidden_name_regex": "^(mf_00[0-6][0-9]|mfn_)",
+    "real_name_regex": "^mf_007[0-9]$",
+    "cal_name_regex": "^mf_00[0-4][0-9]$",
+    "note": "graine écrite d'avance au §3 ; homonymes : heritage-synth/runs/pilot-v0.2 contient des fichiers NOMMÉS mf_0070-0079 (graine 20261007) : ce ne sont pas ces pages, ils ne sont ni ouverts ni hachés"
+  },
+  "generator": {
+    "commit": "23875ab05425ce2aa07742bf314d02436c2f5642",
+    "profile": "pilot-v0.2",
+    "bundle_sha256": "ca41c09272248c5096f2547fe738eee622db5af50414182537ac8e94e43367f5",
+    "bundle_relpath": "stage_s_bundle_v5.zip.bin",
+    "pilot_config_sha256": "b984106f76b09fb7b92539f1ec682f50a031d72c2f9e3d3b40ac9d339e28e4c7",
+    "render": {
+      "width": 2680,
+      "height": 3698,
+      "dpi": 150,
+      "degradation": "mixed",
+      "columns": null
+    },
+    "required_pip": [
+      "Pillow>=12.3,<13",
+      "fonttools>=4.60,<5",
+      "jsonschema>=4.25,<5",
+      "lxml>=6,<7",
+      "numpy>=2.3,<3",
+      "shapely>=2.1,<3"
+    ],
+    "note": "identique à config/data2_pages.json (test) ; seules la graine, le nombre de pages et les noms changent"
+  },
+  "overlap": {
+    "text_share_threshold": 0.05,
+    "reference_report_sha256": "714bc571db6a4e394027ec4e98cd4c997bde5ff54c735fbc8f32d9cdc4218654",
+    "blocking": {
+      "OVERLAP_PAGE": true,
+      "OVERLAP_TEXT_FLAGGED": false
+    },
+    "mf_pages": [
+      "mf_0000",
+      "mf_0001",
+      "mf_0002",
+      "mf_0003",
+      "mf_0004",
+      "mf_0005",
+      "mf_0006",
+      "mf_0007",
+      "mf_0008",
+      "mf_0009",
+      "mf_0010",
+      "mf_0011",
+      "mf_0012",
+      "mf_0013",
+      "mf_0014",
+      "mf_0015",
+      "mf_0016",
+      "mf_0017",
+      "mf_0018",
+      "mf_0019",
+      "mf_0020",
+      "mf_0021",
+      "mf_0022",
+      "mf_0023",
+      "mf_0024",
+      "mf_0025",
+      "mf_0026",
+      "mf_0027",
+      "mf_0028",
+      "mf_0029",
+      "mf_0030",
+      "mf_0031",
+      "mf_0032",
+      "mf_0033",
+      "mf_0034",
+      "mf_0035",
+      "mf_0036",
+      "mf_0037",
+      "mf_0038",
+      "mf_0039",
+      "mf_0040",
+      "mf_0041",
+      "mf_0042",
+      "mf_0043",
+      "mf_0044",
+      "mf_0045",
+      "mf_0046",
+      "mf_0047",
+      "mf_0048",
+      "mf_0049"
+    ],
+    "note": "comme DATA-2 ; OVERLAP_TEXT_FLAGGED attendu (même réservoir de textes) : rapporté, non bloquant pour LD-3 qui mesure la géométrie"
+  },
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 20261018,
+    "percentiles": [
+      2.5,
+      97.5
+    ]
+  },
+  "criterion": {
+    "a": {
+      "precision_min": 0.8,
+      "recall_min": 0.9,
+      "pages": 10
+    },
+    "b": {
+      "dp_low_gt": 0.0,
+      "dr_low_min": -0.02
+    }
+  },
+  "cal": {
+    "page": "mf_0045",
+    "pages_estimate": 10
+  },
+  "decoy_b3": {
+    "precision": 0.7,
+    "recall": 0.9,
+    "n_pred": 10,
+    "n_gt": 10,
+    "matched": 9,
+    "note": "fumée seulement : référence B3 factice, jamais écrite comme un résultat"
+  },
+  "robustness": {
+    "timeouts_s": {
+      "pip": 1500,
+      "unzip": 900,
+      "clone": 600,
+      "controls": 600,
+      "D": 900,
+      "CAL": 1800,
+      "generate": 1500
+    },
+    "heartbeat_s": 60,
+    "deadline_s": 5400,
+    "stop_margin_s": 120,
+    "eval_margin_s": 300,
+    "estimate_factor": 1.5,
+    "generation_estimate_s": 600,
+    "exit_record": "ld4_run_exit.json",
+    "requires_cuda_for_full_run": true,
+    "generate_note": "DATA-2 : 20 pages en 527 s ; plafond propre de la génération dans l'EVAL"
+  },
+  "run_identity_files": [
+    "scripts/eval_ld4.py",
+    "config/ld4.json",
+    "tests/test_ld4.py",
+    "scripts/data3_generate.py"
+  ],
+  "reserves": [
+    "Même distribution que mf_0000-0059 (même réservoir de textes).",
+    "B3 réévalué dans le lancement. Bootstrap sur 10 pages.",
+    "La fusion n'est pas une chaîne : l'aval (recadrages, CTC) n'est pas adapté (leçon de P-04).",
+    "CER non mesuré, pas d'ALTO (la fusion porte sur la géométrie).",
+    "OVERLAP_TEXT_FLAGGED attendu (même réservoir de textes que mf_0000-0049) : rapporté, non bloquant pour LD-4, qui mesure la géométrie."
+  ],
+  "reserves_from_ld2": [
+    6,
+    7
+  ],
+  "reading": {
+    "met": "FUSION_CANDIDATE_GEOMETRIE",
+    "not_met": "O5_SUR_DECISION_PA",
+    "rule": "calculée UNIQUEMENT à partir du verdict du critère PRINCIPAL (§5)"
+  },
+  "prediction": {
+    "source": "docs/END_TO_END_LD4_PROPOSITION.txt §6, écrite AVANT tout calcul ; recopiée, jamais calculée",
+    "lines": [
+      "Base : sur mf_0060-0069 (LD-3), DETR M16 avait P 0,976 et R 0,915 (6040 lignes prédites), et B3 avait P 0,714 et R 0,936 (8308 lignes, dont environ 2280 fausses).",
+      "elle récupère une bonne part des lignes de bord manquées par DETR (environ 300 sur environ 550) ;",
+      "elle importe aussi les fausses lignes B3 qui ne sont pas posées sur une ligne DETR, que j'estime entre 500 et 1100.",
+      "FUSION : R 0,955 [0,94 ; 0,97] ; P 0,86 [0,80 ; 0,92].",
+      "Contre B3 : ΔP +0,15 [+0,08 ; +0,21] ; ΔR +0,02 [0,00 ; +0,035].",
+      "Probabilité que le PRINCIPAL soit rempli : environ 0,7. Le risque principal est (a) P < 0,80, si les fausses lignes B3 hors couverture sont plus nombreuses que prévu.",
+      "Contre DETR : ΔR +0,04, ΔP −0,11."
+    ]
+  }
+}

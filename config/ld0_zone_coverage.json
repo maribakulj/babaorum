@@ -1,0 +1,183 @@
+{
+  "schema_version": "ld0_zone_coverage_config_v1",
+  "lot": "docs/END_TO_END_LD0_LOT.txt (sha 9faecb797a9fec2e…), amendement 1 (§11) en vigueur",
+  "status": "PREDECLARED before the run, 2026-10-18, executant w2:pC, protocol w2:p6. Training pages only (mf_0000-0049). Indicators, not the evaluation value.",
+  "detector": {
+    "repo": "PaddlePaddle/PP-DocLayoutV3_safetensors",
+    "revision": "e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+    "files": {
+      "model.safetensors": {
+        "sha256": "5ea422c6cc5fe759a47e1357c35639b58173508e025a3131cbe4b6ac59e2b85e",
+        "bytes": 133270468
+      },
+      "config.json": {
+        "sha256": "3cf834b91d23a756b1519bce4db42c09e852f3e35c35092dd5a3e253a50c071a"
+      },
+      "preprocessor_config.json": {
+        "sha256": "519fe0187a43a1ca429e3ad8317bab8700f0d5e8fb3a6e3a0a413ffac078ba42"
+      }
+    },
+    "floor": 0.1,
+    "tiles": 1,
+    "processor": "AutoImageProcessor, defaults (no parameter changed; effective input size read at run time)",
+    "image": "RGB, native resolution",
+    "post_process": "post_process_object_detection, target_sizes = native (H, W), boxes and polygon_points kept",
+    "classes_expected": 25,
+    "note": "D-219d was tuned on Gallica and NewsEye pages, not Mille Feuilles (written in the report)",
+    "revision_source": "fixée par p6 (18/10/2026) : refs/main du cache = e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+    "safetensors_sha_status": "mesuré sur le cache local ; à confirmer par téléchargement neuf pendant la fumée, puis figé avant le gel"
+  },
+  "license": {
+    "text": "apache-2.0",
+    "date": "2026-10-18",
+    "source": "étiquette Hugging Face license:apache-2.0, lue par p6 via l'API le 18/10/2026",
+    "note": "a full run refuses while the text is empty"
+  },
+  "zones": {
+    "conf": 0.3,
+    "dedup": 0.8,
+    "gap_fraction_of_native_height": 0.02,
+    "max_h_native_px": 2400.0,
+    "source": "axel 7b75303, scripts/e12_kraken.py ZONE_CONF, ZONE_GAP, ZONE_MAX_H"
+  },
+  "measure": {
+    "margin_px": 16.0,
+    "margin_variant_px": 0.0,
+    "threshold_a": 0.9,
+    "threshold_a_prime": 0.75,
+    "threshold_b": 0.9,
+    "target_median_height_px": 32.0,
+    "sample_spacing_max_px": 4.0,
+    "sample_spacing_height_divisor": 4.0,
+    "height_bucket_px": 32.0,
+    "frame": "scaled page (factor = 32 / median GT height); GT baselines x factor, zones x (W_s/W, H_s/H)"
+  },
+  "reading": {
+    "usable_mean_a": 0.92,
+    "z_gt_control_min_mean": 0.99,
+    "p95_max_lines_per_zone": 32,
+    "N_if_p95_ok": 32,
+    "N_else": 64
+  },
+  "pages": {
+    "list": [
+      "mf_0000",
+      "mf_0001",
+      "mf_0002",
+      "mf_0003",
+      "mf_0004",
+      "mf_0005",
+      "mf_0006",
+      "mf_0007",
+      "mf_0008",
+      "mf_0009",
+      "mf_0010",
+      "mf_0011",
+      "mf_0012",
+      "mf_0013",
+      "mf_0014",
+      "mf_0015",
+      "mf_0016",
+      "mf_0017",
+      "mf_0018",
+      "mf_0019",
+      "mf_0020",
+      "mf_0021",
+      "mf_0022",
+      "mf_0023",
+      "mf_0024",
+      "mf_0025",
+      "mf_0026",
+      "mf_0027",
+      "mf_0028",
+      "mf_0029",
+      "mf_0030",
+      "mf_0031",
+      "mf_0032",
+      "mf_0033",
+      "mf_0034",
+      "mf_0035",
+      "mf_0036",
+      "mf_0037",
+      "mf_0038",
+      "mf_0039",
+      "mf_0040",
+      "mf_0041",
+      "mf_0042",
+      "mf_0043",
+      "mf_0044",
+      "mf_0045",
+      "mf_0046",
+      "mf_0047",
+      "mf_0048",
+      "mf_0049"
+    ],
+    "forbidden": "mf_0050 to mf_0059: never listed, opened, loaded or hashed (test_ld0_zone_coverage.py)",
+    "reference": "runs/e2e4_kaggle_output_v3/e2e4_extraction_report.json, sha256 prefix 714bc571, keys steps.page_cache.sha256 pages/<p>.json and images/<p>.png",
+    "reference_sha256_prefix": "714bc571"
+  },
+  "budget": {
+    "cap_minutes": 90,
+    "measured_from": "start of the page loop",
+    "beyond": "INCOMPLETE, outputs kept"
+  },
+  "vendor": {
+    "source": "~/axel",
+    "commit": "7b75303",
+    "copied_byte_for_byte_from": "git show 7b75303:src/axel/...",
+    "files": {
+      "axel/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "axel/layout/__init__.py": "7e13ef127941f30ec6d7b0a2e6a9658e4d5af2d0241e055bfa6d033ba7d51115",
+      "axel/layout/blocks.py": "6d1e366d49592f8f9d2343ce2f549e279e61a04fd2d0c7bdd2761d61b861f260",
+      "axel/layout/chains.py": "e019fb3037d8043946ced5181dd014147e02a7849b93e93c0c8cb11ac8ae0410",
+      "axel/layout/geom.py": "c19eb675a8902abf6f65915b654d7143284557d8f2a4924f854e3666b9315713",
+      "axel/layout/order.py": "86cd96d664ea2c7ef3b27845f43aa8ddf6b2079531df637cc91960bd7029a290"
+    }
+  },
+  "required_outside_image": [
+    "transformers==5.18.0",
+    "huggingface_hub==1.33.0"
+  ],
+  "outputs": {
+    "dir": "/kaggle/working",
+    "report": "ld0_zone_coverage_report.json",
+    "manifest": "ld0_manifest.json",
+    "zones": "zones/<division>/<page>.json",
+    "measures": "measures/<page>.json"
+  },
+  "required_outside_image_note": "pip-installed; the import loop receives module names (transformers, huggingface_hub). torchvision and cv2 come from the Kaggle image (§12 (1)).",
+  "discovery": {
+    "note": "§13 (1) and p6 precision: explicit relative paths from this white list, checked under each mounted root (/kaggle/input, its 1st and 2nd level directories). Each must be found exactly once. No recursive search. The run 3 probe is the directory e2e3/mf itself: no listed or traversed path contains e2e3/mf/pages or e2e3/mf/images (test_discovery_never_lists_or_traverses_the_reserved_pages). §14 (12): roots down to level 3; kit by explicit candidates.",
+    "relpaths": {
+      "bundle": "stage_s_bundle_v6.zip.bin",
+      "kit": "scripts/ld0_zone_coverage.py",
+      "reference": "e2e4_extraction_report.json",
+      "run3_mf_dir": "e2e3/mf"
+    },
+    "kit_dataset_candidates": [
+      "/kaggle/input/babaorum-ld0-kit/scripts/ld0_zone_coverage.py",
+      "/kaggle/input/datasets/mabaku/babaorum-ld0-kit/scripts/ld0_zone_coverage.py"
+    ]
+  },
+  "timeouts_s": {
+    "pip_per_package": 900,
+    "download": 600,
+    "unzip": 900,
+    "pytest": 900,
+    "measure": 6600,
+    "aggregate": 600
+  },
+  "heartbeat_interval_s": 60,
+  "timeouts_note": "§14 (1): each step has its timeout; a TIMEOUT gives status TIMEOUT with the step name; the measure timeout is 110 min (6600 s); aggregate-only runs after measure only.",
+  "download_retries": 1,
+  "hf_environment": {
+    "HF_HUB_DOWNLOAD_TIMEOUT": "60",
+    "HF_HUB_ETAG_TIMEOUT": "30",
+    "HF_HUB_DISABLE_XET": "1",
+    "measure_extra": {
+      "HF_HUB_OFFLINE": "1"
+    },
+    "note": "§14 (10) and (11): set before the first import of huggingface_hub"
+  },
+  "faulthandler_seconds": 600
+}

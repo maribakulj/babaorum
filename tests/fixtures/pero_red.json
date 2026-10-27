@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.1.0",
+  "task": "same_crops",
+  "dataset_id": "fixture",
+  "exposure": "fixture",
+  "key_policy": "fixture_explicit",
+  "coordinate_frame": "original_encoded_pixels_top_left_xy",
+  "crop_recipe": "axis_aligned_xyxy_no_rectification",
+  "lines": [
+    {
+      "id": "a",
+      "document_key": "doc",
+      "page_id": "p",
+      "split": "dev",
+      "image_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "crop_sha256": "a71dea8c57cd6aacff8cc786a2fbd8fb220783ade9dec17f11a935882dd896a9",
+      "image_size": [
+        100,
+        100
+      ],
+      "box": [
+        0,
+        0,
+        30,
+        20
+      ],
+      "text": "ſon"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "normalization_height_px": 20.0,
+  "distance_tolerance_heights": 0.5,
+  "endpoint_tolerance_heights": 1.0,
+  "duplicate_coverage": 0.75,
+  "multi_local_group_coverage": 0.75,
+  "multi_local_group_requires_each_partial": true,
+  "sample_step_heights": 0.125,
+  "crop_edge_epsilon_heights": 0.05,
+  "truncation_extension_heights": 1.0
+}

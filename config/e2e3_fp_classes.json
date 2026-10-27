@@ -1,0 +1,219 @@
+{
+  "schema_version": "e2e3_fp_classes_config_v1",
+  "status": "PREDECLARED before any run, 2026-10-17, author w2:pC (executant), protocol w2:p6 (docs/END_TO_END_E2E3_LOT.txt sections 0-7, amendement 1). Diagnostic of false positives of the E2E-1 checkpoints. Nothing launched before the GO of w2:p6 after the 30 min of w2:pK. No claim of OCR performance; the E2E-1 gate stays FAIL.",
+  "source_checkpoints": {
+    "dir": "runs/e2e1_kaggle_output/calibration",
+    "B3": {
+      "checkpoint": "B3/checkpoint_last.pt",
+      "sha256": "738ca116bdfcef16",
+      "step": 2000
+    },
+    "B4": {
+      "checkpoint": "B4/checkpoint_last.pt",
+      "sha256": "85f96b00",
+      "step": 2000,
+      "role": "descriptive only"
+    },
+    "S2": {
+      "checkpoint": "S2/checkpoint_last.pt",
+      "sha256": "12fca335",
+      "step": 2000
+    }
+  },
+  "bundle": {
+    "file": "Drive/babaorum/stage_s/bundle/stage_s_bundle_v5.zip",
+    "sha256": "ca41c09272248c5096f2547fe738eee622db5af50414182537ac8e94e43367f5",
+    "manifest_entry": "bundle_manifest.json"
+  },
+  "pages_regeneration": {
+    "source": "mille-feuilles at commit 23875ab05425ce2aa07742bf314d02436c2f5642 (clone of the gitbundle embedded in bundle v5)",
+    "python": "~/heritage-synth/.venv (3.12)",
+    "command": [
+      "generate",
+      "--output",
+      "<tmp>/mf",
+      "--pages",
+      "60",
+      "--seed",
+      "20261008",
+      "--width",
+      "2680",
+      "--height",
+      "3698",
+      "--dpi",
+      "150",
+      "--degradation",
+      "mixed",
+      "--jobs",
+      "2"
+    ],
+    "tmp_dir": "/private/tmp/e2e3",
+    "never_in": "reports/ before the final report",
+    "source_check": "the 51 tracked mille-feuilles files of the clone must have the sha256 listed in the bundle manifest (mille_feuilles_sha256)"
+  },
+  "pages": {
+    "eval": [
+      "mf_0050",
+      "mf_0051",
+      "mf_0052",
+      "mf_0053",
+      "mf_0054",
+      "mf_0055",
+      "mf_0056",
+      "mf_0057",
+      "mf_0058",
+      "mf_0059"
+    ],
+    "train": [
+      "mf_0000",
+      "mf_0001",
+      "mf_0002",
+      "mf_0003",
+      "mf_0004",
+      "mf_0005",
+      "mf_0006",
+      "mf_0007",
+      "mf_0008",
+      "mf_0009",
+      "mf_0010",
+      "mf_0011",
+      "mf_0012",
+      "mf_0013",
+      "mf_0014",
+      "mf_0015",
+      "mf_0016",
+      "mf_0017",
+      "mf_0018",
+      "mf_0019",
+      "mf_0020",
+      "mf_0021",
+      "mf_0022",
+      "mf_0023",
+      "mf_0024",
+      "mf_0025",
+      "mf_0026",
+      "mf_0027",
+      "mf_0028",
+      "mf_0029",
+      "mf_0030",
+      "mf_0031",
+      "mf_0032",
+      "mf_0033",
+      "mf_0034",
+      "mf_0035",
+      "mf_0036",
+      "mf_0037",
+      "mf_0038",
+      "mf_0039",
+      "mf_0040",
+      "mf_0041",
+      "mf_0042",
+      "mf_0043",
+      "mf_0044",
+      "mf_0045",
+      "mf_0046",
+      "mf_0047",
+      "mf_0048",
+      "mf_0049"
+    ]
+  },
+  "scale": {
+    "target_median_height_px": 32.0,
+    "page_scale_rule": "as scripts/train_stage_s.py load_scaled_page"
+  },
+  "model": {
+    "channels": 64,
+    "K": 8,
+    "rows": 8,
+    "stride": 4,
+    "hidden": 128,
+    "alphabet": "built from the train pages (build_alphabet), as at the E2E-1 run"
+  },
+  "extraction": {
+    "threshold": 0.5,
+    "min_cells": 4,
+    "stride": 4,
+    "config_v2_sha256": "a464e1b6"
+  },
+  "replay_control": {
+    "B3_recall_mean_10_pages": 0.5769,
+    "B3_precision_mean_10_pages": 0.2042,
+    "tolerance": 0.001,
+    "rule": "mismatch -> status MISMATCH and no reading"
+  },
+  "classes_of_unmatched_predictions": {
+    "matching": "babaorum.line_geometry.v1 (evaluate_line_geometry, tolerance 0.5 x GT height), one-to-one",
+    "distance": "DIRECTIONAL distance prediction -> GT: mean over the prediction's sampled points (4 px) of the distance to the GT polyline, divided by the GT height h (section 8(f) of the lot). The matching for the evaluation stays line_geometry.v1.",
+    "h": "band height of the nearest GT line, i.e. the line with the smallest normalised distance (tie: smallest GT id)",
+    "near": "GT lines with normalised distance <= 0.5",
+    "order": "D, then F, then H, then R; sum of counts = number of unmatched predictions (checked)",
+    "D_duplicate": "a near GT line that is matched to ANOTHER prediction",
+    "F_fragment": "a near GT line whose coverage by the prediction (GT samples within 0.5 h of the prediction) is < 0.5",
+    "H_hallucination": "normalised distance to the nearest GT line > 1",
+    "R_rest": "everything else, reported and never reread as another class",
+    "reference_line": "the GT line with minimal normalised directional distance; ties go to the smallest GT id; only this line is used for D, F, H and h"
+  },
+  "readings": {
+    "R1": "dominant class (>= 50 % of the B3 false positives) decides the next lot: D -> post-processing; F -> extraction first; H -> cut or weight the CTC gradient into enc_det; none >= 50 % -> not explained here",
+    "R2_H1": "H1 supported if ratio(B3) > 1.5 AND ratio(S2) <= 1.2; contradicted if ratio(B3) <= 1.2 x ratio(S2); intermediate case reported as is; H1 stays a correlation between arms",
+    "R3": "no threshold changed after reading; the E2E-1 gate stays FAIL",
+    "R4_cosine": {
+      "conflict_supported": "IC95 of cos entirely < 0 AND median of rho >= 0.1",
+      "negligible": "median of ratio = norm_ctc / norm_det < 0.1 -> 'CTC gradient negligible' (checked first)",
+      "otherwise": "no conflict supported; IC containing 0 -> no measurable conflict; IC > 0 -> gradients aligned",
+      "S2_control": "rho must be 0 for S2; max norm_ctc on enc_det must be exactly 0",
+      "scope": "the cosine measures the FINAL state, not the training dynamics"
+    }
+  },
+  "cosine_measurement": {
+    "batches": 20,
+    "seed": 20261017,
+    "pages": "train pages mf_0000..mf_0049",
+    "sigma_step": "sigma_for_step(1999, 2000, h) with h = scale.target_median_height_px (32 px), as in run_v2",
+    "mode": "train, no optimiser step",
+    "vector": "flattened parameters of enc_det, cosine between grad(L_det) and grad(L_ctc)",
+    "bootstrap": {
+      "resamples": 10000,
+      "seed": 20261017,
+      "interval": "percentile 2.5 - 97.5 over batches"
+    },
+    "control_S2": "grad(L_ctc) on enc_det must be exactly 0 for S2; otherwise MISMATCH",
+    "backward": "two separate backward passes with zero_grad between them: L_det then L_ctc; flattened enc_det gradients",
+    "attempt_cap": 200,
+    "per_batch_record": [
+      "cos",
+      "norm_det",
+      "norm_ctc",
+      "ratio = norm_ctc / norm_det",
+      "rho = -cos * ratio"
+    ],
+    "incomplete": "if 200 attempts do not give 20 valid batches: status COSINE_INCOMPLETE with the number of skipped batches"
+  },
+  "priority_if_time_runs_out": [
+    "replay control B3",
+    "D/F/H/R for B3",
+    "cosine B3",
+    "B4",
+    "S2"
+  ],
+  "budget": {
+    "resource": "CPU only, 0 GPU",
+    "estimate": "generation about 20 min; 30 full-page evaluations about 10-20 min; cosine about 5 min",
+    "cap_minutes": 60,
+    "beyond_cap": "status INCOMPLETE, no reading",
+    "cap_scope": "inference only: the 60-minute cap starts after the page-cache step and covers the replay, the classes and the cosine steps; generation is not part of it",
+    "reports": {
+      "run1": "reports/e2e3_fp_classes.json (untouched, run 1)",
+      "run2": "reports/e2e3_fp_classes_run2.json (untouched, FAILED)",
+      "run3": "reports/e2e3_fp_classes_run3.json (this run)"
+    }
+  },
+  "reporting": "reports/e2e3_fp_classes.json only for the final report; intermediate files in /private/tmp/e2e3",
+  "run_gate": "NOT launched: waits for the explicit GO of w2:p6 after the 30 min of w2:pK",
+  "page_cache": {
+    "dir": "/private/tmp/e2e3/mf",
+    "accept": "exactly 60 JSON pages and 60 PNG images; the sha256 of each file is recorded in the report",
+    "refuse": "any other content: status FAILED; run 2 never generates pages",
+    "live_process_guard": "refuse to start while a process e2e3_fp_classes or mille_feuilles is alive"
+  }
+}

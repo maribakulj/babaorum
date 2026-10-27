@@ -1,0 +1,102 @@
+{
+  "schema_version": "ld1_line_detr_config_v1",
+  "lot": "docs/END_TO_END_LD1_LOT.txt (amendements §10 (1)-(9)) ; conception docs/END_TO_END_LINE_DETR_DESIGN.txt §2-§4, §10",
+  "status": "PRÉDÉCLARÉ avant toute lecture des pages d'évaluation (pC, 24/10/2026). Entraînement de contrôle Z-GT, sans CTC.",
+  "seed": 20261023,
+  "init": {
+    "source": "E2E-5 lambda, bras B3, enc_det (kernel_source mabaku/babaorum-e2e5-lambda, relpath logs/checkpoint_last.pt)",
+    "sha256_full": "ef5e826803c347f73e49c83c0f21f61399f9ea06ee985905bd17644dff3844fa",
+    "step": 2000
+  },
+  "canvas": {
+    "width": 1536,
+    "height": 512,
+    "pad_value": 1.0,
+    "n_queries": 32,
+    "k_points": 8
+  },
+  "lr": 0.0001,
+  "lr_encoder": 1e-05,
+  "weight_decay": 0.0001,
+  "timing_steps": 200,
+  "train_budget_s": 4200,
+  "max_steps": 20000,
+  "checkpoint_every": 1000,
+  "threshold": 0.5,
+  "threshold_grid": [
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "pages": {
+    "train": "mf_0000-0044",
+    "held_out": "mf_0045-0049",
+    "forbidden": "mf_0050-0059"
+  },
+  "reading": {
+    "converges_min": 0.8,
+    "partial_min": 0.5
+  },
+  "budget_gpu_minutes": {
+    "T": 10,
+    "E": 75,
+    "V": 15,
+    "total": 120
+  },
+  "batch_size": 2,
+  "padding": {
+    "policy": "fond 1,0 hors recadrage (conception §10 (10)) ; activations NON remises à zéro ; GroupNorm masquée (statistiques sur le recadrage seul) ; jetons hors recadrage masqués (transformer et décodeur). §12 (6), §13 (5)",
+    "reason": "invariance des sorties au cadrage (test de canevas de tailles différentes)"
+  },
+  "detector": {
+    "repo": "PaddlePaddle/PP-DocLayoutV3_safetensors",
+    "revision": "e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+    "files": {
+      "model.safetensors": {
+        "sha256": "5ea422c6cc5fe759a47e1357c35639b58173508e025a3131cbe4b6ac59e2b85e",
+        "bytes": 133270468
+      },
+      "config.json": {
+        "sha256": "3cf834b91d23a756b1519bce4db42c09e852f3e35c35092dd5a3e253a50c071a"
+      },
+      "preprocessor_config.json": {
+        "sha256": "519fe0187a43a1ca429e3ad8317bab8700f0d5e8fb3a6e3a0a413ffac078ba42"
+      }
+    },
+    "floor": 0.1,
+    "tiles": 1,
+    "processor": "AutoImageProcessor, defaults (no parameter changed; effective input size read at run time)",
+    "image": "RGB, native resolution",
+    "post_process": "post_process_object_detection, target_sizes = native (H, W), boxes and polygon_points kept",
+    "classes_expected": 25,
+    "note": "D-219d was tuned on Gallica and NewsEye pages, not Mille Feuilles (written in the report)",
+    "revision_source": "fixée par p6 (18/10/2026) : refs/main du cache = e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+    "safetensors_sha_status": "mesuré sur le cache local ; à confirmer par téléchargement neuf pendant la fumée, puis figé avant le gel"
+  },
+  "batch_candidates": [
+    8,
+    4,
+    2
+  ],
+  "evaluate_pp": true,
+  "robustness": {
+    "timeouts_s": {
+      "D": 900,
+      "T": 600,
+      "E": 4500,
+      "V": 900,
+      "pytest_heavy": 5400
+    },
+    "heartbeat_s": 60,
+    "deadline_s": 7200,
+    "v_reserve_s": 900,
+    "stop_margin_s": 120,
+    "e_reserve_s": 300,
+    "exit_record": "ld1_run_exit.json",
+    "checkpoints_kept": 3,
+    "log_every_steps": 100,
+    "requires_cuda_for_full_run": true
+  }
+}

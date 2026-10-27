@@ -1,0 +1,256 @@
+{
+  "schema_version": "ld0r_pages_v1",
+  "lot": "docs/END_TO_END_LD0R_LOT.txt (sha 1c67b30c07c53448…), amendements 1 et 7",
+  "status": "PREDECLARED before any run (pC, 24/10/2026). Test pages of P-07/P-07b; reading rules fixed in the lot. Indicators, not an evaluation.",
+  "pool": {
+    "tirage": "/Users/marcel/Documents/reviews/babaorum-pipeline/rappel_pages/tirage.json",
+    "tirage_sha256": "b791edb5486a2e7f84108c0ec3de47c3eab8bc20a9f82d38b7045bfb744faeee",
+    "label": "LOT-P07 tirage, écrit avant tout calcul (dev n° 2, issu du train)",
+    "pool_size": 26
+  },
+  "juge_dir": "/Users/marcel/Documents/reviews/babaorum-pipeline/rappel_pages/runs_26/juge",
+  "pages": [
+    {
+      "page": "L_OEuvre_4613537_T0000001",
+      "juge_sha256": "a674264d994e529e754ea69816ddd17a07304aba251cd5b4277ba788a37d4c25",
+      "run_sha256": "bf055fdcfa1e9cbfe42fbe7300017b4afcafe949045bfe72f1fb3a3a0f394e1c",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/L_OEuvre_4613537_T0000001.jpg",
+      "image_sha256": "33db29e1dd7c2635827e4ae90ebf10b30c26cc003af150d31868dcfb80b88296"
+    },
+    {
+      "page": "L_OEuvre_4613814_T0000002",
+      "juge_sha256": "2d33528db02b6389d218c6816b29698f2e89b1e1581f31857de4ffa4cfde981e",
+      "run_sha256": "f052b7d8d7179db2302ba077627e946a248b9eb9dec6f1f19b5172116ef3c05e",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/L_OEuvre_4613814_T0000002.jpg",
+      "image_sha256": "813fc4b9a2522078562c26a310f4e79a74f179fe5f7ca96e7a7360d5cb492a4f"
+    },
+    {
+      "page": "L_OEuvre_4615451_T0000001",
+      "juge_sha256": "8b613764352e3480586246517aa3c6ad7348c0163f67a3273362a9e7f9b37c20",
+      "run_sha256": "35442aabf402d28c3e8ef1a8a4d362e16ec4bd8714653cf16d5d1ff41b3711fc",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/L_OEuvre_4615451_T0000001.jpg",
+      "image_sha256": "a7944b21eb44467b307bb05f0da0dc5757d9d90289938ea5384046400a3e6995"
+    },
+    {
+      "page": "L_OEuvre_4616168_T0000002",
+      "juge_sha256": "c03a0f6d14d9a7cad407cce1a94c3013213b3683091f81eea8de561d7cdd0b8c",
+      "run_sha256": "cdacda3d27d71d4b2bedcbee977178735dfca64bd2a26e5697e3a09c091679dd",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/L_OEuvre_4616168_T0000002.jpg",
+      "image_sha256": "36afb0042f6d77250b306d590dceeb33473a406ee44233595f84fa914685f3fe"
+    },
+    {
+      "page": "L_OEuvre_4617562_T0000007",
+      "juge_sha256": "adcadba58696550504a510841faa26eb8879aacccf325e44dfa2023832d1a8f3",
+      "run_sha256": "78eba29c0064b42318ce23508723e4a9d35162a3e06e05ad8e69fea1f42650cd",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/L_OEuvre_4617562_T0000007.jpg",
+      "image_sha256": "573036bc68831763045e7dae1cae5d0dbc44f2fe87415650c8438178bb73cf92"
+    },
+    {
+      "page": "L_OEuvre_4620081_T0000004",
+      "juge_sha256": "c74e2da8584dda63ee56499b9a8ca0f8c68360d3b892750d742be896560a00ed",
+      "run_sha256": "e1ceed65a8df59b478c1b8619437c47a553c36e88dbf49f067a8c4265c2e2bd6",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/L_OEuvre_4620081_T0000004.jpg",
+      "image_sha256": "7cfcda48f104ff8336f7153ca4f91faa7deb2a250614b4b478f48d34f054c87a"
+    },
+    {
+      "page": "L_OEuvre_4621234_T0000001",
+      "juge_sha256": "54ae5354a47129e85b21d7ccf35076245af043ba6b46413a6cb350a373d64985",
+      "run_sha256": "742af93a264e7fab1e1959105fd3013174bfddeb575dc95d7985cab465da9837",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/L_OEuvre_4621234_T0000001.jpg",
+      "image_sha256": "35274be5e353a2f31b4d5e7a38ff4ece4d73874c7502af44bc4b8a3035621bca"
+    },
+    {
+      "page": "L_OEuvre_4621234_T0000010",
+      "juge_sha256": "800e9be25743f63793a98ccad0ed1949c3032c78484df93fe412f876ecd439de",
+      "run_sha256": "0734e48c4e091e4b810a167751b2f4e1e46b2062d1891736365f54a4f82d197e",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/L_OEuvre_4621234_T0000010.jpg",
+      "image_sha256": "47589919ab61ce924c922c4b342238f98fa9b6a063a6566220cd7139e6b5b4e5"
+    },
+    {
+      "page": "La_Fronde_6704254_T0000002",
+      "juge_sha256": "f779a4de0e2f9abb15b6453de86cf9315caeb8487c4942721fd88f6ece5bbde7",
+      "run_sha256": "87e28f3b192c7c46664a1cdbf53093f9aa9025d7c869a724ce3d9d4d845a5889",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/La_Fronde_6704254_T0000002.jpg",
+      "image_sha256": "8482e6e71865eb4cbf6de0a30ea12ac54dca54c32c9acd6cac98fac888b50ba5"
+    },
+    {
+      "page": "La_Presse_0476474_T0000001",
+      "juge_sha256": "80575ed347b12c3e892136802a6247c8ab9918c5b42db1937e3331454c72c56c",
+      "run_sha256": "535b397e28fee492c346303a9796416993432e33a281007c85d6530cc4fe55e8",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/La_Presse_0476474_T0000001.jpg",
+      "image_sha256": "515008504b843f61e0447b343b271bf42220295c8d3af279dd7752af7115c97a"
+    },
+    {
+      "page": "La_Presse_0477885_T0000002",
+      "juge_sha256": "a5e7309ea09144533b046ca08bb75fe0a60d07e355e2934cb58155835792f26e",
+      "run_sha256": "8d7caac0a05b621b2e42046d65b45eb4132caf1cf05b28056d3efa01e9b5ccf4",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/La_Presse_0477885_T0000002.jpg",
+      "image_sha256": "d35acb073562e2cc4a96d0406d6297137cdc7d9779f300ddb72b5611c0872635"
+    },
+    {
+      "page": "La_Presse_0514199_T0000004",
+      "juge_sha256": "5c102db803527eaa4526fb12fcbdec1817324e4f269a51990a9d8125c2c2997a",
+      "run_sha256": "a9ff849fd7971ce5dd778b4b23f39cd715990d4874dace3bf91241a5acb084de",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/La_Presse_0514199_T0000004.jpg",
+      "image_sha256": "25c8f2202c07e24278b8ade0b3d5e119d4d5af1e9a4d931a5c5880b89f831578"
+    },
+    {
+      "page": "La_Presse_0542128_T0000001",
+      "juge_sha256": "875f6b201fa57ed701eee78d9516a62098d60ba5488ad75896325a3545037206",
+      "run_sha256": "f4f784476c9b6b6cb0658e4c6268f3507c6e78978b8b2835e31037a775e33ff9",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/La_Presse_0542128_T0000001.jpg",
+      "image_sha256": "8e56573c0cceb3d504fbb091d1d3099efd818dd43e53d896061fee7dca5cb320"
+    },
+    {
+      "page": "La_Presse_0543209_T0000001",
+      "juge_sha256": "65277c63b3349e0ebf911661d17cd44e3736dfee6799289af6e732bd6839d7b4",
+      "run_sha256": "c2aa1857200cb7af9875f1301afc7cb018c4a4b28ea5d6ab979f11ff3b690bde",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/La_Presse_0543209_T0000001.jpg",
+      "image_sha256": "ebde014b6c642a15f35b3a4920733627491de4f5c74318a8ffdcd25e6c7ab66d"
+    },
+    {
+      "page": "La_Presse_0545076_T0000002",
+      "juge_sha256": "de793c839ff4a3482cbca7dc38683b2545344de103521f246f61fff0fe3f3087",
+      "run_sha256": "2c0685e83b071d5edc77608f6eebe4e4cf7a5e8fccd07c1caae15867bd6d8a89",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/La_Presse_0545076_T0000002.jpg",
+      "image_sha256": "a03ecb9a9a869b05afdf3303014960afebe16b9155e129d1539784f499f302d5"
+    },
+    {
+      "page": "Le_Matin_0551841_T0000003",
+      "juge_sha256": "08be4206ba6382a7aad06a35e55516b3a048cb93e930e3981d029cf758a14e76",
+      "run_sha256": "61d6a20cc865f9136120fe9d55e37466c0f88027c96db4a678c252c25e483184",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Le_Matin_0551841_T0000003.jpg",
+      "image_sha256": "9fa410f599ca2e8f5f0e947b8ba2432f74502958491faf42753b8518f964bafe"
+    },
+    {
+      "page": "Le_Matin_0554721_T0000004",
+      "juge_sha256": "f5e294c772125f3cc45ceceae5714755174ba4e22d8e90392fb8e698e26af268",
+      "run_sha256": "314fa80280c31574c6f8c174ebb25aff1f1fea1afa19065afefb338563a355de",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Le_Matin_0554721_T0000004.jpg",
+      "image_sha256": "e533525ac75c0f5f13fdfba8427fdcc2ee9f7ca2f6bfae287a2f85306718caa0"
+    },
+    {
+      "page": "Le_Matin_0558051_T0000005",
+      "juge_sha256": "260cdb5a921bba7cc1feef7a217aae7b7d8acbc1aa9552ade488ca7179498dc2",
+      "run_sha256": "40c53822b5dd28153bc5df27d05c2a0fbc0cadc6134ce51807da034172926681",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Le_Matin_0558051_T0000005.jpg",
+      "image_sha256": "ff1cdb344330dd26b74277e4da6303cb6582c2821c3bc7dd237ade2bdef139da"
+    },
+    {
+      "page": "Le_Matin_0569308_T0000002",
+      "juge_sha256": "6567b42fdad384ec6b8bf5ab8034c15bdf521affb69b001d85b8bc8522e96b3c",
+      "run_sha256": "51fae6a9f04b5a84d3cc8d235fa539d111c72fff4b9878da5140314319662008",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Le_Matin_0569308_T0000002.jpg",
+      "image_sha256": "e3dcb3e19df1470237f467c1e5cb64533c903f52c0ae3ce724ede98b6939c3b8"
+    },
+    {
+      "page": "Le_Matin_0574578_T0000002",
+      "juge_sha256": "e43e21ddcdd7c92499f2bc592ea2b2e5bece1b5c28a5c18c247d2c43a328bab4",
+      "run_sha256": "986690ab8b683cbbe8d78108b105e73afb8a7b2c111ac26f3fee325b4cb94e7c",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Le_Matin_0574578_T0000002.jpg",
+      "image_sha256": "48c1643e25129eb2ac86c55f0d5ec76b08a5b03aea6415c2314d108ccbd8a322"
+    },
+    {
+      "page": "Le_Matin_0576768_T0000002",
+      "juge_sha256": "c3f97c5e543afc68da41be4b2b73ebff75ced1ab76c8c2e28ab14d3fdebc3e8c",
+      "run_sha256": "102174d738554d70a13e4bfc11ed5f396fd910055b91c3595d03d98096e567dd",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Le_Matin_0576768_T0000002.jpg",
+      "image_sha256": "06883d26b60925740958ee304e3b18a25740bcca449968d7d91f1b1d5d2b751a"
+    },
+    {
+      "page": "Le_Matin_0576768_T0000006",
+      "juge_sha256": "3d27bdf6cb283f8466e39d8c666bd03fc0d1f51d4c1e5a44fd8ebf149a2c1360",
+      "run_sha256": "6b92f9d46adc57055f1ea63ca779d70b6d9092e084406a3b123fefba7c6dd19c",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Le_Matin_0576768_T0000006.jpg",
+      "image_sha256": "abbc5dc5f52abfa6bbb4e11e75e55548590f562af204dbc1e1f66dd5b8233465"
+    },
+    {
+      "page": "Le_Matin_0586574_T0000003",
+      "juge_sha256": "c34ee275336490b6efb44a41d14416a9618466a93088e129d394e703229681f5",
+      "run_sha256": "8c1506e9850d1dbc81e62583fe321e354a8c45fc91c5e0aef4f3e1b2fa644cbc",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Le_Matin_0586574_T0000003.jpg",
+      "image_sha256": "4b2bf0085f55d018d63bbf6600d1e341fe8a2e2fce6a6d155fd372f22662ddc9"
+    },
+    {
+      "page": "Marie-Claire_4613173_T0000004",
+      "juge_sha256": "b26cd82458c905586e8593aa31a93898b407de5f6e3678ad8c5ddda441373197",
+      "run_sha256": "4b53ecb2d9f29926fd57ba3b5979aa3564252b53d251d2fba76e25301ece0d00",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Marie-Claire_4613173_T0000004.jpg",
+      "image_sha256": "2bc2a6baab31d64d704fed99943fe284504ec28c0d3828e83673adb675b85f1a"
+    },
+    {
+      "page": "Marie-Claire_4621234_T0000002",
+      "juge_sha256": "b66b2f4f4c4309fa5862b033afec8b4d1b70e0689b9e4159b89c6094b8ff821e",
+      "run_sha256": "418584c5cd905d6ae9157afdfeee68eb8e463fb99eba2fcff4bd8f9137026f60",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Marie-Claire_4621234_T0000002.jpg",
+      "image_sha256": "da931a795ce1f8652a408f6a9af1ca324d2c9f29a50a6b51beb2b326b8c2bb1c"
+    },
+    {
+      "page": "Marie-Claire_4621234_T0000008",
+      "juge_sha256": "430623f242f25a3619946d24770bad5238c3beb08903dc31e578cae3d16536fb",
+      "run_sha256": "c49b1fd2c2778ab82ce51d06433c15503cac7d92ecb2ab4bb4b67a5540f8bf89",
+      "image": "/Users/marcel/corpus-vt/newseye-read/ATR_TrainingSet_BnF_Newseye_M2+/Marie-Claire_4621234_T0000008.jpg",
+      "image_sha256": "53b0c588d04320c698f2672640497b4a4b635b7cf0a02e94fdf68112d26a997c"
+    }
+  ],
+  "ld0_script": {
+    "path": "scripts/ld0_zone_coverage.py",
+    "sha256": "4fae48f8616a6177819bfb2a6a636d140117681c536407216d92076a4da05913"
+  },
+  "detector": {
+    "repo": "PaddlePaddle/PP-DocLayoutV3_safetensors",
+    "revision": "e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+    "files": {
+      "model.safetensors": {
+        "sha256": "5ea422c6cc5fe759a47e1357c35639b58173508e025a3131cbe4b6ac59e2b85e",
+        "bytes": 133270468
+      },
+      "config.json": {
+        "sha256": "3cf834b91d23a756b1519bce4db42c09e852f3e35c35092dd5a3e253a50c071a"
+      },
+      "preprocessor_config.json": {
+        "sha256": "519fe0187a43a1ca429e3ad8317bab8700f0d5e8fb3a6e3a0a413ffac078ba42"
+      }
+    },
+    "floor": 0.1,
+    "tiles": 1,
+    "processor": "AutoImageProcessor, defaults (no parameter changed; effective input size read at run time)",
+    "image": "RGB, native resolution",
+    "post_process": "post_process_object_detection, target_sizes = native (H, W), boxes and polygon_points kept",
+    "classes_expected": 25,
+    "note": "D-219d was tuned on Gallica and NewsEye pages, not Mille Feuilles (written in the report)",
+    "revision_source": "fixée par p6 (18/10/2026) : refs/main du cache = e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+    "safetensors_sha_status": "mesuré sur le cache local ; à confirmer par téléchargement neuf pendant la fumée, puis figé avant le gel"
+  },
+  "zones": {
+    "conf": 0.3,
+    "dedup": 0.8,
+    "gap_fraction_of_native_height": 0.02,
+    "max_h_native_px": 2400.0,
+    "source": "axel 7b75303, scripts/e12_kraken.py ZONE_CONF, ZONE_GAP, ZONE_MAX_H"
+  },
+  "measure": {
+    "margin_px": 16.0,
+    "margin_variant_px": 0.0,
+    "threshold_a": 0.9,
+    "threshold_a_prime": 0.75,
+    "threshold_b": 0.9,
+    "target_median_height_px": 32.0,
+    "sample_spacing_max_px": 4.0,
+    "sample_spacing_height_divisor": 4.0,
+    "height_bucket_px": 32.0,
+    "frame": "scaled page (factor = 32 / median GT height); GT baselines x factor, zones x (W_s/W, H_s/H)"
+  },
+  "reading": {
+    "usable_mean_a": 0.92,
+    "z_gt_control_min_mean": 0.99,
+    "p95_max_lines_per_zone": 32,
+    "p95_max_lines_per_zone_N64": 64,
+    "share_max_in_big_zones": 0.02,
+    "band_failure_max_share": 0.05
+  },
+  "budget": {
+    "smoke_timeout_s": 1500,
+    "cap_minutes": 30
+  }
+}

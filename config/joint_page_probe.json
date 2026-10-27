@@ -1,0 +1,25 @@
+{
+  "schema_version": "joint_page_probe_config_v1",
+  "seed": 17,
+  "device": "cpu",
+  "threads": 1,
+  "synthetic_only": true,
+  "image_size_wh": [32, 24],
+  "num_queries": 3,
+  "channels": 8,
+  "alphabet_size": 4,
+  "band_rows": 3,
+  "sequence_steps": 12,
+  "baseline_fraction": 0.75,
+  "drift_witness": {
+    "steps": 40,
+    "learning_rate": 0.03,
+    "geometry_weight": 400.0,
+    "coordinate_scale_px": 3.0,
+    "initial_baseline_y": 5.0,
+    "evidence_center_y": 9.0,
+    "height_px": 3.0,
+    "min_unregularized_displacement_px": 1.0,
+    "max_regularized_displacement_px": 0.5
+  }
+}

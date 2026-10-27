@@ -1,0 +1,22 @@
+{
+  "schema_version": "joint_capture_trajectories_config_v1",
+  "design_status": "exploratory_follow_up_to_joint_capture_profile; start offsets bracket features seen in that profile; no confirmatory threshold",
+  "synthetic_only": true,
+  "device": "cpu",
+  "threads": 1,
+  "seed": 17,
+  "image_size_wh": [16, 128],
+  "sequence_steps": 12,
+  "band_rows": 3,
+  "baseline_fraction": 0.75,
+  "height_px": 3.0,
+  "target_baseline_y": 50.0,
+  "evidence_center_y": 54.0,
+  "prior_sigma_fraction_of_height": 0.5,
+  "fixed_q_sigma_fraction_of_height": 0.5,
+  "start_offsets_heights": [-1.0, 0.0, 0.25, 0.5, 1.0, 1.5],
+  "learning_rate": 0.03,
+  "steps": 40,
+  "record_steps": [0, 1, 5, 10, 20, 40],
+  "scope": "fixed synthetic CTC field; compare point loss and Gaussian expected CTC plus KL trajectories; no OCR or performance claim"
+}

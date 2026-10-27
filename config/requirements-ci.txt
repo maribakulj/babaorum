@@ -1,0 +1,7 @@
+# Environnement léger contrôlé le 26/10/2026, Python 3.12.
+# Aucun modèle ni bibliothèque GPU n'est requis par cette sélection de tests.
+pytest==9.1.1
+numpy==2.5.3
+Pillow==12.3.0
+rapidfuzz==3.14.6
+lxml==6.1.3

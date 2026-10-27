@@ -1,0 +1,67 @@
+{
+  "schema_version": "stage_s_smoke_config_v1",
+  "status": "PREDECLARED before any run, 2026-10-08, author w2:pC; per w2:p6 lot S-L5. SMOKE_ONLY_NO_CLAIM: plumbing and CPU cost on synthetic pages, no OCR or performance claim.",
+  "source": {
+    "root": "~/heritage-synth/runs/pilot-v0.2",
+    "read_in_place": true,
+    "copies_into_babaorum": false,
+    "pages_dir": "pages",
+    "images_dir": "images"
+  },
+  "split": {
+    "train_pages": ["mf_0000", "mf_0001", "mf_0002", "mf_0003", "mf_0004", "mf_0005", "mf_0006", "mf_0007", "mf_0008", "mf_0009"],
+    "eval_pages": ["mf_0090", "mf_0091", "mf_0092", "mf_0093", "mf_0094"],
+    "note": "eval pages are used for smoke only; the sealed volet 2 is not opened. No sealed manifest listing these ids was found in the docs consulted on 2026-10-08."
+  },
+  "scale": {
+    "target_median_height_px": 32.0,
+    "height_definition": "median over the page's lines of normal_negative_px + normal_positive_px",
+    "factor_recorded_per_page": true,
+    "resampling": "PIL bilinear on the image; baselines and distances multiplied by the same factor; nothing written to disk"
+  },
+  "tiles": {
+    "size_px": 512,
+    "train": "one random tile per step; lines kept only if their whole band lies inside the tile",
+    "eval": "central tile of each eval page"
+  },
+  "seed": 17,
+  "device": "cpu",
+  "threads": 1,
+  "optimizer": {"type": "Adam", "learning_rate": 0.001},
+  "steps": 40,
+  "ctc_lines_per_step_max": 8,
+  "ctc_lines_selection": "readable lines only, drawn at random among lines fully inside the tile",
+  "input_perturbation": {
+    "description": "GT baseline shifted rigidly along the chord normal by d ~ N(0, (0.5 h)^2), h = GT band height",
+    "sigma_fraction_of_height": 0.5
+  },
+  "sigma_schedule": {
+    "type": "geometric",
+    "from_heights": 1.0,
+    "to_heights": 0.1,
+    "height_px_reference": "target_median_height_px",
+    "over": "steps"
+  },
+  "arms": ["S2", "B3", "B4"],
+  "losses": {
+    "L_det": "BCE on baseline map (stride 4) with pos_weight = min(50, #neg/#pos), plus L1 on neg and pos over baseline-mask cells",
+    "L_geo": "curve_geometry_loss between refined baseline and GT baseline (K=8 points), normalised by GT height, mean over lines",
+    "L_ctc": "sum of included expected CTC losses divided by the number of included lines; exclusions counted by status",
+    "total": "L_det + L_geo + L_ctc (weights 1)"
+  },
+  "model": {"channels": 64, "K": 8, "rows": 8, "stride": 4},
+  "extraction": {"threshold": 0.5, "min_cells": 4, "stride": 4},
+  "evaluation": {
+    "metric": "babaorum.line_geometry.v1 via evaluate_line_geometry",
+    "before": "extract_polylines on sigmoid(HeadD baseline logit)",
+    "after": "refine_lines applied to the extracted polylines",
+    "cer": "greedy CTC decode of the matched readable GT lines, after refinement only; levenshtein / len(gt text)"
+  },
+  "time_limit_seconds_per_run": 300,
+  "time_limit_policy": "a run over the limit is stopped and reported; nothing is reduced after the fact",
+  "report": "reports/stage_s_smoke_<arm>.json",
+  "expectations_written_before_run": {
+    "any_outcome_reported": true,
+    "note": "no expected metric values are declared; the smoke run is for plumbing and seconds per step"
+  }
+}

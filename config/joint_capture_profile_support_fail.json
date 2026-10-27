@@ -1,0 +1,31 @@
+{
+  "schema_version": "joint_capture_profile_config_v1",
+  "synthetic_only": true,
+  "device": "cpu",
+  "threads": 1,
+  "seed": 17,
+  "image_size_wh": [16, 64],
+  "sequence_steps": 12,
+  "band_rows": 3,
+  "baseline_fraction": 0.75,
+  "height_px": 3.0,
+  "target_baseline_y": 23.0,
+  "evidence_center_y": 27.0,
+  "prior_sigma_fraction_of_height": 0.5,
+  "offset_min_heights": -2.0,
+  "offset_max_heights": 2.0,
+  "offset_step_heights": 0.25,
+  "gaussian_sigma_fractions_of_height": [0.25, 0.5, 1.0, 1.5],
+  "quadrature_order": 15,
+  "directional_gradient_epsilon": 1e-9,
+  "profile_metrics": [
+    "initial_dloss_dy",
+    "ctc_gradient_points_toward_evidence",
+    "contiguous_directional_interval_from_target",
+    "expected_ctc",
+    "ctc_plus_kl",
+    "all_values_finite"
+  ],
+  "interpretation_scope": "one constructed smooth field; profile only, no optimization, no OCR or performance claim",
+  "historical_note": "Original support-failure configuration; all grid and optimizer-independent settings match joint_capture_profile.json, but the 64 px canvas cannot contain the largest Gaussian quadrature samples."
+}

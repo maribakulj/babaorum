@@ -1,0 +1,82 @@
+{
+  "schema_version": "joint_capture_dense_v2_config",
+  "status": "corrective_reanalysis_after_p6_review_2026-10-08; same field as T4b/T4c; exploratory, no confirmatory threshold",
+  "reason": "T4b/T4c used 15-node Gauss-Hermite on a piecewise-smooth CTC(y); review found sign errors for sigma>=1h. T4c stopped at 40 steps, unconverged, without KL-only / E-only controls.",
+  "synthetic_only": true,
+  "device": "cpu",
+  "threads": 1,
+  "seed": 17,
+  "image_size_wh": [
+    16,
+    128
+  ],
+  "sequence_steps": 12,
+  "band_rows": 3,
+  "baseline_fraction": 0.75,
+  "height_px": 3.0,
+  "target_baseline_y": 50.0,
+  "evidence_center_y": 54.0,
+  "prior_sigma_fraction_of_height": 0.5,
+  "tabulation": {
+    "y_min": 10.0,
+    "y_max": 95.0,
+    "step_px": 0.005,
+    "integration": "trapezoid on tabulated point CTC, Gaussian truncated at +-6 sigma (all within tabulation)",
+    "note": "first launch stopped before any report: support check failed with y_min=24 (sigma=1.5h at offset -2h needs mu-6sigma=17); range widened to 10..95 before any result was seen"
+  },
+  "profile": {
+    "offset_min_heights": -2.0,
+    "offset_max_heights": 2.0,
+    "offset_step_heights": 0.25,
+    "sigma_fractions_of_height": [
+      0.25,
+      0.5,
+      1.0,
+      1.5
+    ],
+    "directional_gradient_epsilon": 1e-09
+  },
+  "directions_reported": [
+    "toward_evidence_center_y (T4b definition, for comparability)",
+    "toward_point_ctc_global_minimum (measured on the tabulation)"
+  ],
+  "trajectories": {
+    "start_offsets_heights": [
+      -1.0,
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      1.5
+    ],
+    "fixed_q_sigma_fraction_of_height": 0.5,
+    "sigma_status": "FIXED, not learned, not annealed (as in T4c)",
+    "learning_rate": 0.03,
+    "short_steps": 40,
+    "long_steps": 3000,
+    "arms": [
+      "point_ctc",
+      "point_ctc_plus_kl",
+      "expected_ctc",
+      "kl_only",
+      "expected_ctc_plus_kl"
+    ]
+  },
+  "expectations_from_independent_review_before_this_run": {
+    "ctc_only_right_edge_heights": [
+      1.25,
+      1.25,
+      1.25,
+      1.25
+    ],
+    "ctc_plus_kl_right_edge_heights": [
+      0.25,
+      0.5,
+      0.5,
+      0.75
+    ],
+    "expected_ctc_plus_kl_long_run_mu_approx": 51.65,
+    "note": "derived with GH15 for the long run; dense quadrature may shift it; reported whatever the outcome"
+  },
+  "interpretation_scope": "one constructed field where evidence (54) and prior target (50) are deliberately opposed; no OCR or performance claim"
+}

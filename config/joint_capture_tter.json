@@ -1,0 +1,63 @@
+{
+  "schema_version": "joint_capture_tter_config_v1",
+  "status": "PREDECLARED before any run, 2026-10-08, author w2:pC (Haiku, under w2:p6 protocol); requested by w2:pA, THEORIE_END_TO_END.md section 1 Proposition 1 (sharp-edged evidence test). Exploratory mechanism probe, no OCR claim.",
+  "question": "Does the capture radius of a point CTC refinement and of a deterministic annealed-sigma refinement scale with feature stride on a sharp-edged evidence field, as Proposition 1 predicts?",
+  "synthetic_only": true,
+  "device": "cpu",
+  "threads": 1,
+  "seed": 17,
+  "field": "two-channel sharp-edged evidence field, canvas 16 x 96, evidence_center_y 48; channel 0 is zero everywhere",
+  "field_definition": "For pixel (x, y) with x the column index 0..31 and y the row index 0..95: channel 0 = 0. Channel 1 = 5.0 - 0.15*(x-8)^2 if |y - 48| <= 1.5, else -2.0. Channel 2 = 5.0 - 0.15*(x-23)^2 if |y - 48| <= 1.5, else -2.0. The edges in y are sharp (step at |y-48| = 1.5), not smoothed.",
+  "image_size_wh": [
+    32,
+    96
+  ],
+  "band_x_endpoints": [
+    8.0,
+    23.0
+  ],
+  "amendment_before_run": "Amendment A-bis, 2026-10-08, before any run, requested by w2:p6 after review of the config. (1) Support fix: at stride 8 the pooled map has only 2 columns (centres x=3.5 and 11.5); the band spanned x=2..13, outside support, and the sampler would raise. Canvas widened to 32 and evidence blobs recentred at x=8 and x=23 so that at stride 8 the centres run from 3.5 to 27.5 and the band endpoints are inside support. (2) Vertical support fix: at stride 8 the sampler requires y-2.25 >= 3.5, while the tabulation started at 4.0; tabulation_y_range moved to [6.0, 90.0]. No other value changed; the amendment is declared before any run and the original config hash is recorded in the review, not reused.",
+  "tabulation_y_range_before_amendment": [4.0, 92.0],
+  "evidence_center_y": 48.0,
+  "sequence_steps": 12,
+  "band_rows": 3,
+  "baseline_fraction": 0.75,
+  "height_px": 3.0,
+  "feature_strides": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "stride_construction": "average-pool the stride-1 field by s (kernel=stride=s); FeatureFrame origin (s-1)/2, stride s; same band geometry in page pixels",
+  "tabulation_step_px": 0.005,
+  "tabulation_y_range": [
+    6.0,
+    90.0
+  ],
+  "reference_y": "argmin of the tabulated point CTC for each stride (y*)",
+  "starts": {
+    "offset_min_heights": -3.0,
+    "offset_max_heights": 3.0,
+    "offset_step_heights": 0.25,
+    "relative_to": "y* of the stride"
+  },
+  "optimizer": {
+    "type": "plain gradient descent",
+    "learning_rate": 0.03,
+    "steps": 1500
+  },
+  "arms": {
+    "point": "minimize L(mu)",
+    "annealed": "minimize E_{N(mu,sigma_k^2)}[L]; sigma_k = sigma0*(sigma_end/sigma0)^(k/(steps-1)), sigma0 = 1.0h, sigma_end = 0.1h; mu only; deterministic schedule, no learned sigma"
+  },
+  "success_rule": "capture if |mu_final - y*| <= 0.25h",
+  "capture_radius_definition": "largest r such that every start offset in [-r, +r] (grid) captures; reported separately for the lower side and upper side",
+  "expectations_written_before_run": {
+    "point_radius_grows_with_stride": "Proposition 1: the capture radius is about (h_b + h_e)/2 + support, with support of the order of the stride; expect the point-arm radius to be non-decreasing in stride, numerical values not fixed in advance",
+    "annealed_at_least_point_per_stride": "annealed radius >= point radius at each stride",
+    "any_outcome_reported": true
+  },
+  "interpretation_scope": "one constructed sharp-edged field, untrained features, no lexicon, no OCR or performance claim; capture here is refinement of an already nearby detector output, not recovery of missing lines (H1 remains excluded)",
+  "gaussian_truncation": "+-6 sigma; any support exit is reported as status left_support, never clamped"
+}

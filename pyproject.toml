@@ -1,0 +1,26 @@
+[project]
+name = "babaorum"
+version = "0.0.1"
+description = "Experimental OCR and traceable geometry for historical documents"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+metrics = ["rapidfuzz>=3.9", "numpy>=1.26", "pillow>=10", "lxml>=5"]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = [
+  "tests/test_contracts.py",
+  "tests/test_page_graph.py",
+  "tests/test_export_page.py",
+  "tests/test_words_from_ctc.py",
+  "tests/test_g0_suivi_identity.py",
+  "tests/test_g0_lm_ngram8.py",
+  "tests/test_ref_gallica_vt_convert.py",
+  "tests/test_public_edition.py",
+  "tests/test_public_guard.py",
+]
+addopts = ["-m", "not private_data"]
+markers = ["private_data: requires local resources omitted from the public source edition"]

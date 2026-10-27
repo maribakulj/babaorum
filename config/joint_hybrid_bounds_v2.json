@@ -1,0 +1,16 @@
+{
+  "schema_version": "joint_hybrid_bounds_config_v2",
+  "scope": "analytic_only_no_dataset_no_training",
+  "line_weighted_block_miss": true,
+  "rates": ["p_line_weighted_block_miss", "q_local_conditional_miss", "r_global_miss"],
+  "grid_min": 0.0,
+  "grid_max": 1.0,
+  "grid_step": 0.1,
+  "numeric_tolerance": 1e-12,
+  "grid_mode": "full_independent_cube",
+  "report_gain_against": ["cascade", "global", "best_single_path"],
+  "independent_union": "1-r*(1-(1-p)*(1-q))",
+  "frechet_union_bounds": ["max(R_c,1-r)", "min(1,R_c+1-r)"],
+  "success_threshold": null,
+  "seed": null
+}

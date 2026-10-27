@@ -1,0 +1,27 @@
+{
+  "schema_version": "joint_variational_band_probe_config_v1",
+  "synthetic_only": true,
+  "device": "cpu",
+  "threads": 1,
+  "seed": 17,
+  "quadrature_order": 15,
+  "image_size_wh": [16, 64],
+  "sequence_steps": 12,
+  "band_rows": 3,
+  "baseline_fraction": 0.75,
+  "height_px": 3.0,
+  "target_baseline_y": 23.0,
+  "evidence_center_y": 27.0,
+  "prior_sigma_fraction_of_height": 0.5,
+  "initial_q_sigma_fraction_of_height": 1.0,
+  "learning_rate": 0.03,
+  "steps": 40,
+  "design_status": "exploratory_after_inline_feasibility_run; the displacement margin was chosen after seeing that transient run, so the result is not confirmatory",
+  "declared_checks": {
+    "minimum_variational_minus_point_displacement_px": 0.25,
+    "maximum_point_gradient_abs_at_final_point": 0.2,
+    "require_finite_all_losses_and_gradients": true,
+    "require_nonnegative_kl_with_tolerance": 1e-12
+  },
+  "scope": "one constructed CTC evidence field; no OCR or performance inference"
+}

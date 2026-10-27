@@ -1,0 +1,108 @@
+{
+  "schema_version": "ld_o1_config_v1",
+  "lot": "docs/END_TO_END_LD_O1_LOT.txt (sha 3cce0cd279039572…) ; source docs/END_TO_END_LD_REFLEXION.txt (O1, H1-H4)",
+  "status": "PRÉDÉCLARÉ avant tout calcul (exécutant sonnet pour p6, 26/10/2026). DESCRIPTIF : il ne décide rien et ne règle rien.",
+  "threshold": 0.6,
+  "margin_h": 0.5,
+  "ld2": {
+    "checkpoint_file": "ld2_main_step003271.pt",
+    "checkpoint_sha256": "e5afd1432e10aa8e06191678844ae350348f7586f505d1a766aba3a5a44b42c3",
+    "steps": 3271,
+    "manifest": "ld2_manifest.json",
+    "report": "ld2_report.json",
+    "n_queries": 32,
+    "note": "checkpoint, seuil et alphabet viennent du manifeste de la sortie de LD-2 ; le bloc freeze doit coïncider avec ces valeurs et avec ld2_report.json"
+  },
+  "pages": [
+    "mf_0045",
+    "mf_0046",
+    "mf_0047",
+    "mf_0048",
+    "mf_0049"
+  ],
+  "smoke_page": "mf_0045",
+  "classes": [
+    "C1_SUPPR_AUTRE_ZONE",
+    "C2_SUPPR_MEME_ZONE",
+    "C3_CONFLIT",
+    "C4_SOUS_SEUIL",
+    "C5_AUCUNE"
+  ],
+  "alone_match": "evaluate_line_geometry([g], [c]).recall == 1, mêmes GroundTruthLine / PredictedLine que train_ld2.score_lines",
+  "prefilter": {
+    "enabled": true,
+    "margin_height_factor": 2.0,
+    "margin_px": 10.0,
+    "note": "écarte seulement les requêtes dont la boîte est à plus de 2 hauteurs de bande + 10 px de la ligne GT (line_geometry exige une distance <= 0,5 h) ; un test vérifie qu'il ne change aucune classe"
+  },
+  "nearest_distance": {
+    "samples": 256,
+    "note": "distance médiane normalisée par la hauteur GT, sur 256 points de la ligne GT, à la requête la plus proche (toutes zones, tous scores)"
+  },
+  "frozen_files_sha256": {
+    "src/babaorum/experimental/line_detr.py": "7715a8e3dca355b94b9794b71221728e8cc2cf259eed6b9dda0c91380c9bd0b5",
+    "scripts/train_line_detr.py": "3552c07263acaa8508a322275b19f7dc306ef028b31d09df56a0c1f2dc3150e3",
+    "scripts/train_ld2.py": "bb301d04445624c0e2ba759f4c9a882fe6315c47e2e1b3a6e13ab5e6380d08a7",
+    "scripts/ld2_core.py": "8c9b0753ba99ac0e441ef86a20bb04bac1120eda6ea141a0f680354108fb4f49",
+    "config/ld2.json": "6907f17b6c74e2e7179d03cef75ad2b43f990161e3f2cf7284435c35d7f85896",
+    "scripts/ld1b_border_diag.py": "edb6ee018a6d90ce8cec75f65ad6b42b14f3007e1e41f4edeba086f091cea2f5",
+    "scripts/data2_generate.py": "df4a6d1b0f2c94e2df4945b697aaad50449ab5609c47e0472198a2f2433850fa",
+    "scripts/data2_common.py": "55b18e307c0808c7110e706ebe123ea99158baf1ca2745c6c9c6a25367ae1fd4",
+    "config/data2_pages.json": "22fcaba9d6aa42ecef63b8292d9fd3ca3d94486437c0821be7342a328478f004",
+    "config/ld1_line_detr.json": "8c05f43ac876fb6b266058c527308e77009a793f2fddb6dbf271d69a7bd05094",
+    "scripts/ld0_zone_coverage.py": "4fae48f8616a6177819bfb2a6a636d140117681c536407216d92076a4da05913",
+    "src/babaorum/line_geometry.py": "b2a36dd9ec36d3edb083d0c47d9d9e9a05f8963610ecac8c962345fb8284c948",
+    "src/babaorum/experimental/joint_geometry.py": "3aaaa334012af3b4bec8397b33cf8aa3fe029e0d4b6638188d2b41d82b27911d",
+    "src/babaorum/experimental/joint_reader_bridge.py": "62fa63dc136a1ad1de86589663ecfc5edfe52b267a8d666dd5ba4ba493dacb48",
+    "src/babaorum/experimental/joint_curves.py": "b12a91f67356e9946eeb1e9aca2b651f306a33d4fbbda4f92cf4a834ea070997",
+    "scripts/eval_ld3.py": "1cb5ab7785ec9f07b13550f7b15147250af96d5d26619d5a3a19d36ca04e69ca",
+    "scripts/data3_generate.py": "2f1cba982f1f731017dda63102ac361b1f9e56f4c255fa59974c178695f0bec8",
+    "config/ld3.json": "2f1979b06237bb0b1673b43e39d802dfb1d7b9936264b8a85e6d68b0ba59f6ea"
+  },
+  "run_identity_files": [
+    "scripts/diag_ld_o1.py",
+    "config/ld_o1.json",
+    "tests/test_ld_o1.py"
+  ],
+  "robustness": {
+    "timeouts_s": {
+      "D": 900,
+      "RUN1": 1800,
+      "RUN4": 5400,
+      "REPORT": 300
+    },
+    "heartbeat_s": 60,
+    "deadline_s": 7200,
+    "stop_margin_s": 120,
+    "exit_record": "ld_o1_run_exit.json"
+  },
+  "reserves": [
+    "LD-2 a été entraîné sur mf_0000-0049, ces pages comprises. Les manques y sont donc probablement moins nombreux que sur des pages neuves. Le diagnostic décrit un MÉCANISME, pas une performance.",
+    "DESCRIPTIF : il ne décide rien et ne règle rien."
+  ],
+  "reserves_from_ld2": [
+    6,
+    7
+  ],
+  "prediction": {
+    "source": "docs/END_TO_END_LD_O1_LOT.txt §4, écrite AVANT tout calcul ; recopiée, jamais calculée",
+    "lines": [
+      "En Z-PP-blocs, tranche 0-8 px : C1 + C2 + C3 (« prédite puis perdue ») ≥ 50 % des manques ; C1 est la plus grande classe (H1).",
+      "Mon estimation centrale : C1 ≈ 40 %, C2 ≈ 10 %, C3 ≈ 10 %, C4 ≈ 15 %, C5 ≈ 25 %.",
+      "Filtre propriétaire (annexe) : R +0,005 à +0,02, P +0,005.",
+      "si C1 + C2 + C3 ≥ 50 % et C1 domine : H1 tient, et O3 (NMS par zone propriétaire) devient un bras d'O2 ;",
+      "si C5 domine : H3 tient, et seule la fusion O2 ou le réentraînement O5 peuvent aider ;",
+      "si C4 domine : H4 tient (seuil)."
+    ]
+  },
+  "reading_rules": {
+    "classes": [
+      "C1 si au moins un candidat supprimé qui apparie la ligne à lui seul a été supprimé par une AUTRE zone que la sienne ; sinon C2 (tous supprimés par sa propre zone).",
+      "Suppresseur = le premier gardé, dans l'ordre des scores (score décroissant, égalité par zone puis requête), dont la règle de recouvrement de nms_lines est vraie.",
+      "C3 seulement si AUCUN candidat supprimé n'apparie la ligne : une prédiction gardée l'apparie à elle seule mais l'appariement global l'a donnée à une autre ligne GT.",
+      "Chaque ligne manquée porte n_suppressed_other_zone et n_suppressed_same_zone ; par source et tranche, c1_with_same_zone_too compte les lignes C1 qui ont AUSSI une suppression par leur propre zone (la lecture à priorité C2 s'en déduit)."
+    ],
+    "c5_note": "c5_near (distance médiane normalisée de la requête la plus proche <= 0,5) et c5_far (> 0,5) ; c5_near INCLUT les fusions et les coupures (alone_match exige une couverture >= 75 % dans les deux sens) ; c5_no_query : aucune requête dans la page."
+  },
+  "c5_near_threshold": 0.5
+}

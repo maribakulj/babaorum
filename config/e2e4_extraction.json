@@ -1,0 +1,193 @@
+{
+  "schema_version": "e2e4_extraction_config_v1",
+  "status": "PREDECLARED before any run, 2026-10-17, executant w2:pC, protocol w2:p6 (docs/END_TO_END_E2E4_LOT.txt incl. amendment 1 §7). CPU only, no regeneration, no GPU, no retraining.",
+  "source_checkpoints": {
+    "dir": "runs/e2e1_kaggle_output/calibration",
+    "B3": {
+      "checkpoint": "B3/checkpoint_last.pt",
+      "sha256": "738ca116bdfcef16",
+      "step": 2000
+    },
+    "B4": {
+      "checkpoint": "B4/checkpoint_last.pt",
+      "sha256": "85f96b00",
+      "step": 2000,
+      "role": "descriptive only"
+    },
+    "S2": {
+      "checkpoint": "S2/checkpoint_last.pt",
+      "sha256": "12fca335",
+      "step": 2000
+    }
+  },
+  "bundle": {
+    "file": "Drive/babaorum/stage_s/bundle/stage_s_bundle_v5.zip",
+    "sha256": "ca41c09272248c5096f2547fe738eee622db5af50414182537ac8e94e43367f5",
+    "manifest_entry": "bundle_manifest.json"
+  },
+  "model": {
+    "channels": 64,
+    "K": 8,
+    "rows": 8,
+    "stride": 4,
+    "hidden": 128,
+    "alphabet": "built from the train pages (build_alphabet), as at the E2E-1 run"
+  },
+  "extraction": {
+    "threshold": 0.5,
+    "min_cells": 4,
+    "stride": 4,
+    "config_v2_sha256": "a464e1b6"
+  },
+  "scale": {
+    "target_median_height_px": 32.0,
+    "page_scale_rule": "as scripts/train_stage_s.py load_scaled_page"
+  },
+  "replay_control": {
+    "B3_recall_mean_10_pages": 0.5769,
+    "B3_precision_mean_10_pages": 0.2042,
+    "tolerance": 0.001,
+    "rule": "mismatch -> status MISMATCH and no reading"
+  },
+  "pages": {
+    "alphabet": [
+      "mf_0000",
+      "mf_0001",
+      "mf_0002",
+      "mf_0003",
+      "mf_0004",
+      "mf_0005",
+      "mf_0006",
+      "mf_0007",
+      "mf_0008",
+      "mf_0009",
+      "mf_0010",
+      "mf_0011",
+      "mf_0012",
+      "mf_0013",
+      "mf_0014",
+      "mf_0015",
+      "mf_0016",
+      "mf_0017",
+      "mf_0018",
+      "mf_0019",
+      "mf_0020",
+      "mf_0021",
+      "mf_0022",
+      "mf_0023",
+      "mf_0024",
+      "mf_0025",
+      "mf_0026",
+      "mf_0027",
+      "mf_0028",
+      "mf_0029",
+      "mf_0030",
+      "mf_0031",
+      "mf_0032",
+      "mf_0033",
+      "mf_0034",
+      "mf_0035",
+      "mf_0036",
+      "mf_0037",
+      "mf_0038",
+      "mf_0039",
+      "mf_0040",
+      "mf_0041",
+      "mf_0042",
+      "mf_0043",
+      "mf_0044",
+      "mf_0045",
+      "mf_0046",
+      "mf_0047",
+      "mf_0048",
+      "mf_0049"
+    ],
+    "setting": [
+      "mf_0000",
+      "mf_0001",
+      "mf_0002",
+      "mf_0003",
+      "mf_0004",
+      "mf_0005",
+      "mf_0006",
+      "mf_0007",
+      "mf_0008",
+      "mf_0009",
+      "mf_0010",
+      "mf_0011",
+      "mf_0012",
+      "mf_0013",
+      "mf_0014",
+      "mf_0015",
+      "mf_0016",
+      "mf_0017",
+      "mf_0018",
+      "mf_0019"
+    ],
+    "eval": [
+      "mf_0050",
+      "mf_0051",
+      "mf_0052",
+      "mf_0053",
+      "mf_0054",
+      "mf_0055",
+      "mf_0056",
+      "mf_0057",
+      "mf_0058",
+      "mf_0059"
+    ],
+    "source": "e2e3 run 3 output (Kaggle dataset of babaorum-e2e3-run3-fp-classes), folder e2e3/mf, not regenerated"
+  },
+  "fusion": {
+    "gap": "gap(A,B) = x(start of B) - x(end of A), px of the scaled page; the same function for measurement and fusion (amendment 1)",
+    "condition_i_ii": "0 < gap <= G (overlaps are never fused)",
+    "condition_iii": "|end-y of A - start-y of B| <= 0.5 * h_target",
+    "condition_iv": "angle difference between last segment of A and first segment of B <= 10 degrees",
+    "angle_max_deg": 10.0,
+    "vertical_factor": 0.5,
+    "G_percentile": 90.0,
+    "G_cap": "h_target = scale.target_median_height_px",
+    "G_units": "G is reported in px AND in e",
+    "order": "sort by (start y, start x, extraction index); each chain grows with the smallest gap, ties by sort key",
+    "G_zero": "G = 0 -> extraction unchanged"
+  },
+  "hesp": {
+    "ratio": "r = g / e ; g horizontal gap in px (gap()), e = median of GT word gaps in px of the same scale (setting pages)",
+    "e_fallback": "0.3 h (median GT height) only if no word box exists",
+    "interval": [
+      0.5,
+      2.0
+    ],
+    "min_fraction": 0.5,
+    "rule": "supported if median(r) in [0.5, 2] AND >= 50 % of r in [0.5, 2]; otherwise 'coupures non expliquées par les espaces'"
+  },
+  "readings": {
+    "R5_recall_ref": 0.5768,
+    "R5_margin": 0.02,
+    "R5_precision_min": 0.5,
+    "R5_rule": "extraction suffisante if precision_mean >= 0.5 AND recall_mean >= 0.5768 - 0.02 (B3, after fusion)",
+    "R6_ref": {
+      "precision": 0.796,
+      "recall": 0.9677
+    },
+    "R6_ref_source": "E2E-1 calibration_report.json, arm S2 at step 2000: after_precision_mean 0.7960, after_recall_mean 0.9677 (precision then recall, as written in the lot)",
+    "R6_margin": 0.02,
+    "R6_rule": "no drop > 0.02 in precision or recall; otherwise 'fusion trop agressive' and R5 not read as a success",
+    "remedy_lambda": "1/6 on the CTC gradient entering enc_det, derived from R4 median 6.08 rounded before the lot; NOT run here (GPU, separate lot)",
+    "B4": "descriptive only"
+  },
+  "budget": {
+    "resource": "Kaggle CPU, 0 GPU",
+    "cap_minutes": 150,
+    "cap_scope": "inference only: starts after the page-cache step",
+    "beyond_cap": "status INCOMPLETE, no reading",
+    "report": "--report argument; never an existing file",
+    "intermediate": "G fixed written to the folder of --report (e2e4_G_fixed.json), before evaluation; nothing is written under --tmp (read-only input on Kaggle)",
+    "cap_note": "amendment 2 (§8) of 17/10/2026: 60 -> 150 min after the Kaggle read-only failure"
+  },
+  "page_cache": {
+    "accept": "exactly 60 JSON and 60 PNG; sha256 per file in the report",
+    "refuse": "any other content: FAILED"
+  },
+  "run_gate": "NOT launched: waits for the GO of w2:p6 after the freeze and the 30-min delay of pK"
+}

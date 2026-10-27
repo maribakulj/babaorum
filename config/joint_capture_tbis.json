@@ -1,0 +1,58 @@
+{
+  "schema_version": "joint_capture_tbis_config_v1",
+  "status": "PREDECLARED before any run, 2026-10-08, p6; requested by w2:pA (THEORIE_END_TO_END.md §1.1, Proposition 1). Exploratory mechanism probe, no OCR claim.",
+  "question": "Inference-time refinement of a detector baseline by reading (no GT in the objective): does a Gaussian band (annealed or learned sigma) widen the capture radius of the CTC objective, and how does the radius scale with feature stride?",
+  "synthetic_only": true,
+  "device": "cpu",
+  "threads": 1,
+  "seed": 17,
+  "field": "same analytic two-blob evidence as the T4 family; canvas 16 x 96, evidence_center_y 48",
+  "image_size_wh": [
+    16,
+    96
+  ],
+  "evidence_center_y": 48.0,
+  "sequence_steps": 12,
+  "band_rows": 3,
+  "baseline_fraction": 0.75,
+  "height_px": 3.0,
+  "feature_strides": [
+    1,
+    2,
+    4
+  ],
+  "stride_construction": "average-pool the stride-1 field by s (kernel=stride=s); FeatureFrame origin (s-1)/2, stride s; same band geometry in page pixels",
+  "tabulation_step_px": 0.005,
+  "tabulation_y_range": [
+    4.0,
+    92.0
+  ],
+  "reference_y": "argmin of the tabulated point CTC for each stride (y*)",
+  "starts": {
+    "offset_min_heights": -3.0,
+    "offset_max_heights": 3.0,
+    "offset_step_heights": 0.25,
+    "relative_to": "y* of the stride"
+  },
+  "optimizer": {
+    "type": "plain gradient descent",
+    "learning_rate": 0.03,
+    "steps": 1500
+  },
+  "arms": {
+    "point": "minimize L(mu)",
+    "annealed": "minimize E_{N(mu,sigma_k^2)}[L]; sigma_k = sigma0*(sigma_end/sigma0)^(k/(steps-1)), sigma0 = 1.0h, sigma_end = 0.1h; mu only",
+    "learned_with_detector_prior": "minimize E_q[L] + KL(N(mu,sigma^2) || N(y_start, tau_det^2)) over mu and log sigma; sigma init 1.0h; tau_det = 1.0h (declared detector uncertainty, centred on the START, not on y*); log sigma clipped to [0.02h, 1.5h] after each step (support guard, declared before run)"
+  },
+  "success_rule": "capture if |mu_final - y*| <= 0.25h",
+  "capture_radius_definition": "largest r such that every start offset in [-r, +r] (grid) captures; reported separately for the lower side and upper side",
+  "expectations_written_before_run": {
+    "point_stride1": "lower-side radius < 1.5h (half-reading trap near -1.4h known from the T4 profile family)",
+    "annealed_stride1": "lower-side radius >= 1.5h (w2:pA predicts capture from about -1.58h with sigma0 = 1h)",
+    "learned_with_detector_prior": "between point and annealed; the prior centred on the start limits capture to about tau_det",
+    "stride_effect": "w2:pA Proposition 1: radius grows with the bilinear support; expect point radius to increase with stride (monotone in s), not fixed in advance numerically",
+    "any_outcome_reported": true
+  },
+  "interpretation_scope": "one constructed smooth field, untrained features, no lexicon, no OCR or performance claim; capture here is refinement of an already nearby detector output, not recovery of missing lines (H1 remains excluded)",
+  "gaussian_truncation": "+-6 sigma; any support exit is reported as status left_support, never clamped"
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": "e2e5_lambda_config_v1",
+  "status": "PREDECLARED (17/10/2026, pC for w2:p6). Lot docs/END_TO_END_E2E5_LOT.txt, amendment 1 (§6) prevails over §0 to §4.",
+  "base_config": {
+    "path": "config/stage_s_smoke_v2.json",
+    "sha256_prefix": "a464e1b6",
+    "note": "config v2: tiles 768, line-centred windows, 2000 steps, seed 17, sigma 1 h to 0.1 h, eval every 1000 steps; its split is replaced (below)"
+  },
+  "bundle": {
+    "name": "stage_s_bundle_v6.zip",
+    "sha256": "91402c71b789f36d5c30c6dd1d5de400ec1ae6358bc327840877c26486862948",
+    "note": "built 17/10/2026 by scripts/build_stage_s_bundle.py --name stage_s_bundle_v6.zip (v1-v5 kept)"
+  },
+  "lambda": {
+    "value": "1/6",
+    "float": 0.16666666666666666,
+    "source": "median R4 of E2E-3 (6.08), rounded before E2E-4; not chosen on a result"
+  },
+  "steps": 2000,
+  "eval_every": 1000,
+  "time_cap_min": 35,
+  "hard_stop_min": 38,
+  "pages": {
+    "train": [
+      "mf_0000",
+      "mf_0001",
+      "mf_0002",
+      "mf_0003",
+      "mf_0004",
+      "mf_0005",
+      "mf_0006",
+      "mf_0007",
+      "mf_0008",
+      "mf_0009",
+      "mf_0010",
+      "mf_0011",
+      "mf_0012",
+      "mf_0013",
+      "mf_0014",
+      "mf_0015",
+      "mf_0016",
+      "mf_0017",
+      "mf_0018",
+      "mf_0019",
+      "mf_0020",
+      "mf_0021",
+      "mf_0022",
+      "mf_0023",
+      "mf_0024",
+      "mf_0025",
+      "mf_0026",
+      "mf_0027",
+      "mf_0028",
+      "mf_0029",
+      "mf_0030",
+      "mf_0031",
+      "mf_0032",
+      "mf_0033",
+      "mf_0034",
+      "mf_0035",
+      "mf_0036",
+      "mf_0037",
+      "mf_0038",
+      "mf_0039",
+      "mf_0040",
+      "mf_0041",
+      "mf_0042",
+      "mf_0043",
+      "mf_0044",
+      "mf_0045",
+      "mf_0046",
+      "mf_0047",
+      "mf_0048",
+      "mf_0049"
+    ],
+    "eval": [
+      "mf_0050",
+      "mf_0051",
+      "mf_0052",
+      "mf_0053",
+      "mf_0054",
+      "mf_0055",
+      "mf_0056",
+      "mf_0057",
+      "mf_0058",
+      "mf_0059"
+    ],
+    "source": "E2E-3 run 3 output (e2e3/mf), not regenerated; sha256 per file against reports e2e3_fp_classes_run3.json (steps.page_cache.sha256)"
+  },
+  "run3_report": "e2e3_fp_classes_run3.json",
+  "step0": {
+    "tolerance": 0.0001,
+    "expected": "1/6",
+    "rule": "same weights, same batch, L_ctc alone, flattened enc_det grad norm ratio; else IMPLEMENTATION_MISMATCH"
+  },
+  "criterion_R7": {
+    "step": 2000,
+    "recall_min": 0.5,
+    "precision_min": 0.5,
+    "pages": 10,
+    "precision_if_no_prediction": 0.0,
+    "extraction": "original (config v2)",
+    "reading_gate": "only if a conclusive E2E-4 is in the journal AND R5 fails (B3: P < 0.5 or R < 0.5568)"
+  },
+  "statuses": [
+    "COMPLETE",
+    "INCOMPLETE",
+    "FINAL_EVAL_SKIPPED",
+    "MISMATCH",
+    "IMPLEMENTATION_MISMATCH",
+    "FAILED"
+  ],
+  "output": "/kaggle/working only (smoke: /private/tmp/e2e5_smoke)",
+  "descriptive_not_read_as_rule": [
+    "ratio extracted/GT",
+    "D/F/H/R classes",
+    "median of ||grad L_ctc|| / ||grad L_det|| on enc_det",
+    "L_geo",
+    "CER of matched lines"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "ld1b_border_diag_config_v1",
+  "lot": "docs/END_TO_END_LD1B_LOT.txt (sha d665306687661853…), CLASSE A, diagnostic descriptif",
+  "status": "PRÉDÉCLARÉ avant tout lancement (pC, 24/10/2026). Aucun réglage n'est tiré de ce diagnostic.",
+  "pins": {
+    "line_detr_sha256": "7715a8e3dca355b94b9794b71221728e8cc2cf259eed6b9dda0c91380c9bd0b5",
+    "train_line_detr_sha256": "3552c07263acaa8508a322275b19f7dc306ef028b31d09df56a0c1f2dc3150e3"
+  },
+  "pages": [
+    "mf_0045",
+    "mf_0046",
+    "mf_0047",
+    "mf_0048",
+    "mf_0049"
+  ],
+  "threshold": 0.5,
+  "bins": [
+    [
+      0,
+      8,
+      "0-8"
+    ],
+    [
+      8,
+      16,
+      "8-16"
+    ],
+    [
+      16,
+      32,
+      "16-32"
+    ],
+    [
+      32,
+      null,
+      ">32"
+    ]
+  ],
+  "rule_of_use": {
+    "zone": "Z-GT",
+    "bin_low": "0-8",
+    "bin_high": ">32",
+    "min_gap": 0.1,
+    "text": "Piste citée dans LD-1 et LD-2 si rappel(0-8) <= rappel(>32) - 0,10 en Z-GT ; ne modifie ni LD-1 ni LD-2."
+  },
+  "checkpoint": {
+    "policy": "checkpoint FINAL de LD-1 : pas S lu dans ld1_timing_manifest.json",
+    "sha256": null,
+    "note": "le sha du checkpoint final n'est PAS écrit au manifeste de LD-1 : à fixer par p6"
+  },
+  "forbidden_pages": "mf_0050 à mf_0059 : jamais",
+  "timeouts_s": {
+    "D": 900,
+    "DIAG": 10800
+  },
+  "assignment": {
+    "Z-GT": "une ligne GT est rattachée au bloc GT qui la contient ; une ligne hors de tout bloc gardé : gt_hors_zone",
+    "Z-PP-blocs": "une ligne GT est rattachée à la zone qui contient la PLUS GRANDE PART de ses points de baseline, la première par ordre d'indice en cas d'égalité (même règle que LD-0 §13 (2)) ; aucun point dans une zone : gt_hors_zone"
+  },
+  "effectifs_note": "Les effectifs par tranche ne s'additionnent PAS à ceux du rappel de LD-1 : ils comptent les lignes GT hors de tout bloc gardé à part (gt_hors_zone), et les prédictions retenues au seuil 0,5 après NMS."
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "stage_s_gpu_calibration_config_v1",
+  "status": "PREDECLARED before any GPU run, 2026-10-08, p6 (protocol); execution pC/p6; authorized by rule 'GPU free account <= 2 h' (Marcel 8/10)",
+  "purpose": "calibration only: seconds/step and memory per arm on a GPU, and a learning-sanity check of the detector; NO comparison of arms, NO claim",
+  "account": "Google FREE account (Colab free GPU, or Kaggle T4 if Colab gives no GPU); account name recorded in the report",
+  "max_wall_clock_hours": 2.0,
+  "data": {
+    "source": "Mille Feuilles generated ON the Colab VM from the mille-feuilles source bundle (no image upload from the Mac: local disk ~0.2 GiB free, upload 12-50 KB/s)",
+    "generation": "profile and command of runs/pilot-v0.2 (pages 2680x3698, 4-6 columns), seed 20261008, 60 pages: mf_0000..mf_0049 train, mf_0050..mf_0059 eval",
+    "eval_is_not_volet_2": true,
+    "source_identity": "mille-feuilles cloned on the VM from a git bundle of ~/heritage-synth at commit 23875ab05425ce2aa07742bf314d02436c2f5642 (full tree, incl. docs/CADRAGE.md and tools/cadrage/sortie/fichiers_lus.tsv required by build_dataset, and .git required by git_state)"
+  },
+  "model_and_protocol": "stage_s_* modules and scripts/train_stage_s_v2.py logic as in reports/stage_s_smoke_v2_summary.json (config v2: tiles 768, line_centered_windows, detection on intersected lines, L_geo and CTC on fully included lines, page-level evaluation), device cuda",
+  "schedule": {
+    "arms_in_order": [
+      "B3",
+      "B4",
+      "S2"
+    ],
+    "steps_per_arm": 2000,
+    "time_cap_per_arm_minutes": 30,
+    "sigma_annealing": "geometric 1h -> 0.1h over the arm's planned steps",
+    "eval_every_steps": 1000,
+    "seed": 17,
+    "global_guard": "before each arm: cap = min(30, remaining_of_120 - 5) minutes; an arm is skipped (reported) if cap < 10",
+    "cap_scope": "the per-arm cap covers training AND evaluations; the driver kills the arm process at cap + 3 min (hard subprocess timeout); the final evaluation runs only if the arm's remaining cap is >= 1.5 x the duration of its last periodic evaluation, otherwise status FINAL_EVAL_SKIPPED_BUDGET (reported, criterion then read on the last completed evaluation)"
+  },
+  "measurements": [
+    "seconds_per_step (median of steps 100-2000)",
+    "peak GPU memory",
+    "L_det, L_geo, L_ctc per 100 steps",
+    "page-level detection recall/precision and mean normalized baseline distance before/after refinement at each eval",
+    "CTC included/excluded counts",
+    "CER of matched readable lines (greedy)"
+  ],
+  "learning_sanity_criterion": "for B3 OR B4 (S2 alone does not count), mean over the 10 eval pages of detection recall >= 0.5 AND mean precision >= 0.5 at the last completed evaluation; a page with n_pred = 0 counts as precision 0 (not excluded); otherwise stage S is NOT launched and the cause is investigated on CPU first; threshold never lowered after observation",
+  "guardrail_declared": "L_geo trajectory reported per arm; if L_geo of B4 exceeds B3 by > 25 % at the last eval, flag possible CTC-driven drift (DTLR pattern) for the stage-S design; not a stopping rule here",
+  "outputs": "report JSON + 10-line summary; checkpoints and logs written to Mon Drive/babaorum/stage_s/calibration/ (not to the Mac disk)",
+  "forbidden": [
+    "any use of volet 1/3 pages",
+    "changing thresholds after seeing results",
+    "extending beyond 2 h on the free account"
+  ],
+  "amendment_before_run": "2026-10-08, p6, before any GPU run: per-arm cap 35 -> 30 min and global 2 h guard added, because generation (~10 min) + pip + preflight + 3 x 35 min could exceed the 2 h free-account limit (flagged by pC, S-L6a). Second amendment (same day, before any run, w2:pA): write-refusal stop, mille-feuilles commit hash, preflight kept. Third amendment (same day, before any run, after pD review via pC): evaluations counted inside the per-arm cap, hard kill at cap + 3 min, eval every 1000 steps instead of 500. Fourth amendment (15 oct., before any run, objection w2:pK): bundle v3 cannot generate (missing CADRAGE.md, fichiers_lus.tsv, .git) -> bundle v4 ships a git bundle at 23875ab0; criterion read on B3 or B4 only, mean over 10 pages, precision 0 when no prediction. Fifth amendment (15 oct., before any run, objection w2:pK on announced cost): realistic schedule declared (generation ~20 min; S2 expected skipped).",
+  "guards_added_before_run": [
+    "stop the driver (status STOPPED_WRITE_REFUSED) if writing to the VM disk or to the mounted Drive fails or free space < 1 GiB; nothing is copied back to the Mac (Mac disk ~0.2-0.5 GiB free)",
+    "record the mille-feuilles source identity used for generation: git commit hash of ~/heritage-synth at bundle time AND sha256 of every bundled mille-feuilles file; without it the generated pages are not reproducible",
+    "preflight CUDA 2 steps kept (catches device errors unseen on CPU)"
+  ],
+  "expected_schedule_declared": "setup (pip + clone + generation of 60 pilot-size pages at ~20 s/page) ~25-30 min; then B3 30 min, B4 30 min; S2 expected to be shortened or SKIPPED_GLOBAL_GUARD (cap < 10 min). Wall clock <= 2 h, cost <= ~4 Colab units. Calibration criterion concerns B3 or B4 only, so a skipped S2 is not a failure."
+}

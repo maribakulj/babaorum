@@ -1,0 +1,7 @@
+{
+  "axel_root": "/chemin/vers/axel",
+  "corpus_root": "/chemin/vers/corpus",
+  "outils_root": "/chemin/vers/outils-seg",
+  "heritage_root": "/chemin/vers/heritage",
+  "reviews_root": "/chemin/vers/Documents/reviews/babaorum-pipeline"
+}
